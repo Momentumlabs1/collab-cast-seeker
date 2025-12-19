@@ -335,6 +335,27 @@ const LandingPage = () => {
             </p>
           </motion.div>
 
+          {/* Important Notice */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-foreground text-background p-6 rounded-2xl mb-12"
+          >
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 bg-background/20 rounded-lg flex items-center justify-center shrink-0">
+                <Zap className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="font-display font-bold text-lg mb-1">How Selection Works</h3>
+                <p className="text-background/80 text-sm">
+                  Payment starts only when you can deliver finished videos. We select a few candidates for free training. 
+                  Best performers advance to the next round. <span className="font-semibold text-background">First person to create a video at my level with my script gets the job directly.</span>
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
           <div className="relative">
             {/* Connection Line */}
             <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-border -translate-x-1/2 hidden md:block" />
@@ -343,27 +364,27 @@ const LandingPage = () => {
               {[
                 { 
                   icon: Rocket, 
-                  title: "Start with Agent Stick", 
-                  desc: "Learn our style by translating existing Strichabi videos. Scripts provided, just bring your animation skills.",
-                  pay: "$1,000/month"
+                  title: "Apply & Get Selected", 
+                  desc: "Submit your portfolio. We pick a few promising candidates for the training phase.",
+                  pay: "Free Training"
                 },
                 { 
                   icon: Trophy, 
-                  title: "Prove Yourself", 
-                  desc: "Show consistent quality and creativity. Master our animation style and meet deadlines.",
-                  pay: "Performance bonuses"
+                  title: "Learn & Compete", 
+                  desc: "I teach you our style. Best performers advance. First to match my level with my script wins the job.",
+                  pay: "Prove Yourself"
                 },
                 { 
                   icon: Star, 
-                  title: "Work on Strichabi", 
-                  desc: "Graduate to our main account. Create original content for our flagship channel.",
-                  pay: "$1,500/month"
+                  title: "Get the Job", 
+                  desc: "Winner gets: All programs & access you need. Fixed starting income. Long-term work.",
+                  pay: "$1,000/month"
                 },
                 { 
                   icon: Users, 
-                  title: "Become a Partner", 
-                  desc: "Great work leads to profit sharing, your own team to lead, and potential partnership in accounts.",
-                  pay: "Profit Sharing + Team"
+                  title: "Grow With Us", 
+                  desc: "Work on bigger accounts, earn more, get profit sharing, build your own team.",
+                  pay: "Up to $1,500+ / Partner"
                 },
               ].map((item, index) => (
                 <motion.div
