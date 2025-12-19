@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ApplicationData } from "@/pages/Index";
+import { ApplicationData } from "@/pages/Application";
 import { CheckCircle2, Instagram, MessageCircle, Sparkles } from "lucide-react";
 
 interface ConfirmationPageProps {
@@ -30,7 +30,7 @@ const ConfirmationPage = ({ data }: ConfirmationPageProps) => {
           transition={{ delay: 0.4 }}
           className="font-display text-4xl sm:text-5xl font-bold tracking-tight mb-4"
         >
-          Bewerbung erhalten!
+          Application Received!
         </motion.h1>
 
         <motion.p
@@ -39,8 +39,8 @@ const ConfirmationPage = ({ data }: ConfirmationPageProps) => {
           transition={{ delay: 0.5 }}
           className="text-muted-foreground text-lg mb-8"
         >
-          Danke für dein Interesse, {data.name.split(" ")[0]}! Wir schauen uns
-          dein Portfolio an und melden uns bald.
+          Thanks for your interest, {data.name.split(" ")[0]}! We'll review
+          your portfolio and get back to you soon.
         </motion.p>
 
         <motion.div
@@ -56,7 +56,7 @@ const ConfirmationPage = ({ data }: ConfirmationPageProps) => {
               <MessageCircle className="w-6 h-6" />
             )}
             <span className="font-display font-semibold text-lg">
-              Wir kontaktieren dich via{" "}
+              We'll contact you via{" "}
               {data.contactPreference === "instagram" ? "Instagram" : "WhatsApp"}
             </span>
           </div>
@@ -75,25 +75,25 @@ const ConfirmationPage = ({ data }: ConfirmationPageProps) => {
         >
           <div className="flex items-center justify-center gap-2 mb-3">
             <Sparkles className="w-5 h-5" />
-            <span className="font-display font-semibold">Was passiert jetzt?</span>
+            <span className="font-display font-semibold">What happens next?</span>
           </div>
           <ul className="text-sm text-muted-foreground space-y-2 text-left">
             <li className="flex items-start gap-2">
               <span className="font-semibold text-foreground">1.</span>
-              Wir prüfen deine Bewerbung & Portfolio
+              We review your application & portfolio
             </li>
             <li className="flex items-start gap-2">
               <span className="font-semibold text-foreground">2.</span>
-              Bei Eignung: Kostenlose Teaching-Phase
+              If qualified: Free teaching phase
             </li>
             <li className="flex items-start gap-2">
               <span className="font-semibold text-foreground">3.</span>
-              Mehrere Runden – wir suchen die Besten
+              Multiple rounds – we're looking for the best
             </li>
             <li className="flex items-start gap-2">
               <span className="font-semibold text-foreground">4.</span>
-              <span className="font-semibold text-foreground">1.000€/Monat</span> sobald
-              dein erstes Video live geht
+              <span className="font-semibold text-foreground">€1,000/month</span> once
+              your first video goes live
             </li>
           </ul>
         </motion.div>
@@ -104,7 +104,7 @@ const ConfirmationPage = ({ data }: ConfirmationPageProps) => {
           transition={{ delay: 0.9 }}
           className="mt-8 text-sm text-muted-foreground"
         >
-          Du kannst dieses Fenster jetzt schließen.
+          You can close this window now.
         </motion.p>
       </div>
     </div>

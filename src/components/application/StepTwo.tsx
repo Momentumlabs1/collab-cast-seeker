@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { ApplicationData } from "@/pages/Index";
+import { ApplicationData } from "@/pages/Application";
 import { ArrowRight, ArrowLeft, Check } from "lucide-react";
 
 interface StepTwoProps {
@@ -41,10 +41,10 @@ const StepTwo = ({ data, updateData, onNext, onBack }: StepTwoProps) => {
     >
       <div className="mb-8">
         <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight mb-3">
-          Deine Editing-Tools
+          Your Editing Tools
         </h2>
         <p className="text-muted-foreground text-lg">
-          Mit welcher Software arbeitest du? Wähle alle aus, die zutreffen.
+          What software do you work with? Select all that apply.
         </p>
       </div>
 
@@ -79,10 +79,10 @@ const StepTwo = ({ data, updateData, onNext, onBack }: StepTwoProps) => {
 
         <div>
           <label className="block text-sm font-medium mb-2">
-            Andere Tools (optional)
+            Other Tools (optional)
           </label>
           <Input
-            placeholder="Weitere Software..."
+            placeholder="Other software..."
             value={data.otherTool}
             onChange={(e) => updateData({ otherTool: e.target.value })}
           />
@@ -90,10 +90,10 @@ const StepTwo = ({ data, updateData, onNext, onBack }: StepTwoProps) => {
 
         <div>
           <label className="block text-sm font-medium mb-2">
-            Erfahrung & Skills
+            Experience & Skills
           </label>
           <Textarea
-            placeholder="Erzähl uns kurz von deiner Erfahrung als Editor..."
+            placeholder="Tell us briefly about your experience as an editor..."
             value={data.experience}
             onChange={(e) => updateData({ experience: e.target.value })}
             className="min-h-[120px]"
@@ -104,7 +104,7 @@ const StepTwo = ({ data, updateData, onNext, onBack }: StepTwoProps) => {
       <div className="mt-10 flex gap-4">
         <Button variant="outline" size="lg" onClick={onBack} className="flex-1">
           <ArrowLeft className="w-5 h-5 mr-2" />
-          Zurück
+          Back
         </Button>
         <Button
           variant="hero"
@@ -113,7 +113,7 @@ const StepTwo = ({ data, updateData, onNext, onBack }: StepTwoProps) => {
           onClick={onNext}
           disabled={!isValid}
         >
-          Weiter
+          Continue
           <ArrowRight className="w-5 h-5 ml-2" />
         </Button>
       </div>
