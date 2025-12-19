@@ -1,10 +1,32 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Sparkles, Users, DollarSign, Zap, TrendingUp, UserPlus, Instagram, Bot, Star, Trophy, Rocket } from "lucide-react";
+import { ArrowRight, Play, Sparkles, Users, DollarSign, Zap, TrendingUp, UserPlus, Instagram, Bot, Star, Trophy, Rocket, ExternalLink, Check } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+
+interface Account {
+  name: string;
+  handle: string;
+  link: string;
+  description: string;
+  tag: string;
+  pay: string;
+  platforms: string[];
+  highlight: boolean;
+  fullDescription: string;
+  requirements: string[];
+  careerPath: string;
+}
 
 const LandingPage = () => {
   const navigate = useNavigate();
+  const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
 
   const features = [
     {
@@ -29,46 +51,78 @@ const LandingPage = () => {
     },
   ];
 
-  const accounts = [
+  const accounts: Account[] = [
     {
       name: "AGENT_STICK",
       handle: "@agent.stickk",
       link: "https://www.instagram.com/agent.stickk",
-      description: "English version of Strichabi. Your starting point! Learn our style by translating older videos. Scripts provided.",
+      description: "English version of Strichabi. Your starting point!",
       tag: "Start Here",
       pay: "$1,000/month",
       platforms: ["Instagram", "TikTok"],
       highlight: true,
+      fullDescription: "This is where you start your journey. Agent Stick is the English version of our main German account Strichabi. You will learn our animation style by translating existing Strichabi videos to English. All scripts are provided by us – you just need to bring your animation skills.",
+      requirements: [
+        "Translate older Strichabi videos to English",
+        "Learn our unique animation style",
+        "Scripts provided – focus on animation quality",
+        "Existing content to learn from",
+      ],
+      careerPath: "Start here → Prove yourself → Move to Strichabi ($1,500/month) → Become a partner",
     },
     {
       name: "ATOMIC BUCK",
       handle: "@atomic_buck_",
       link: "https://www.instagram.com/atomic_buck_",
-      description: "Rebranding to new character style (like @yeti_dyor). Heavy animation work needed.",
+      description: "Rebranding to new character style. Heavy animation work.",
       tag: "Rebrand",
       pay: "$1,000/month",
       platforms: ["Instagram"],
       highlight: false,
+      fullDescription: "This account is going through a complete rebrand. We are transforming it into a new character style similar to @yeti_dyor on TikTok. This requires heavy animation work and creative input. Perfect for editors who want to shape something new from the ground up.",
+      requirements: [
+        "Create new character animations",
+        "Heavy animation workload",
+        "Creative input welcome",
+        "Reference style: @yeti_dyor on TikTok",
+      ],
+      careerPath: "Build the new style → Show consistent quality → Profit sharing opportunities",
     },
     {
       name: "POVYOURAI",
       handle: "@povyourai",
       link: "https://www.instagram.com/povyourai",
-      description: "Currently dormant – open for fresh ideas. Simpler videos okay. Make it yours.",
+      description: "Currently dormant – open for fresh ideas.",
       tag: "Entry Level",
       pay: "$500/month",
       platforms: ["Instagram"],
       highlight: false,
+      fullDescription: "This account is currently dormant and waiting for the right person to bring it back to life. We are completely open for fresh ideas and new directions. Simpler videos are okay here – the main goal is to get some views and test new concepts. Perfect entry point for beginners.",
+      requirements: [
+        "Bring your own creative ideas",
+        "Simpler videos accepted",
+        "Low pressure environment",
+        "Freedom to experiment",
+      ],
+      careerPath: "Start simple → Build views → Prove yourself → Move to bigger accounts",
     },
     {
       name: "STRICHABI",
       handle: "@strichabi",
       link: "https://www.instagram.com/strichabi",
-      description: "Our flagship German account. Top performers only. Prove yourself first, then work here.",
+      description: "Our flagship German account. Top performers only.",
       tag: "Elite Level",
       pay: "$1,500/month",
       platforms: ["Instagram", "TikTok"],
       highlight: false,
+      fullDescription: "This is our main German account and the source of most of our revenue. We produce this content ourselves. Only top performers who have proven themselves on Agent Stick or other accounts get to work here. This is the goal you are working towards.",
+      requirements: [
+        "Must prove yourself first on Agent Stick",
+        "Match my quality level with my scripts",
+        "Highest animation standards",
+        "Long-term commitment",
+      ],
+      careerPath: "Reserved for proven editors → $1,500/month → Profit sharing → Partnership potential",
     },
   ];
 
@@ -240,16 +294,14 @@ const LandingPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {accounts.map((account, index) => (
-              <motion.a
+              <motion.button
                 key={account.name}
-                href={account.link}
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={() => setSelectedAccount(account)}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`group bg-background p-6 rounded-2xl border-2 transition-all duration-300 hover:shadow-xl ${
+                className={`group bg-background p-6 rounded-2xl border-2 transition-all duration-300 hover:shadow-xl text-left ${
                   account.highlight 
                     ? "border-foreground ring-2 ring-foreground/20" 
                     : "border-border hover:border-foreground/50"
@@ -291,13 +343,116 @@ const LandingPage = () => {
                     )}
                   </div>
                   <div className="flex items-center gap-2 text-sm font-medium text-foreground/70 group-hover:text-foreground transition-colors">
-                    View
+                    Learn More
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
-              </motion.a>
+              </motion.button>
             ))}
           </div>
+
+          {/* Account Detail Modal */}
+          <Dialog open={!!selectedAccount} onOpenChange={() => setSelectedAccount(null)}>
+            <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+              {selectedAccount && (
+                <>
+                  <DialogHeader>
+                    <div className="flex items-center gap-4 mb-2">
+                      <div className={`w-14 h-14 rounded-xl flex items-center justify-center ${
+                        selectedAccount.highlight 
+                          ? "bg-foreground text-background" 
+                          : "bg-muted text-foreground"
+                      }`}>
+                        <Instagram className="w-7 h-7" />
+                      </div>
+                      <div>
+                        <DialogTitle className="font-display text-2xl flex items-center gap-2">
+                          {selectedAccount.name}
+                          {selectedAccount.highlight && <Star className="w-5 h-5 fill-current text-foreground" />}
+                        </DialogTitle>
+                        <p className="text-muted-foreground">{selectedAccount.handle}</p>
+                      </div>
+                    </div>
+                  </DialogHeader>
+
+                  <div className="space-y-6">
+                    {/* Tags & Pay */}
+                    <div className="flex flex-wrap items-center gap-3">
+                      <span className={`px-3 py-1 text-sm font-medium rounded-full ${
+                        selectedAccount.highlight 
+                          ? "bg-foreground text-background" 
+                          : "bg-muted"
+                      }`}>
+                        {selectedAccount.tag}
+                      </span>
+                      <span className="px-3 py-1 text-sm font-semibold rounded-full bg-primary/10 text-primary">
+                        {selectedAccount.pay}
+                      </span>
+                      {selectedAccount.platforms.map((platform) => (
+                        <span key={platform} className="px-3 py-1 text-xs rounded-full bg-muted text-muted-foreground">
+                          {platform}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Full Description */}
+                    <div>
+                      <h4 className="font-display font-bold text-lg mb-2">About This Account</h4>
+                      <p className="text-muted-foreground leading-relaxed">{selectedAccount.fullDescription}</p>
+                    </div>
+
+                    {/* Requirements */}
+                    <div>
+                      <h4 className="font-display font-bold text-lg mb-3">What You Will Do</h4>
+                      <ul className="space-y-2">
+                        {selectedAccount.requirements.map((req, i) => (
+                          <li key={i} className="flex items-start gap-3">
+                            <div className="w-5 h-5 bg-foreground text-background rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                              <Check className="w-3 h-3" />
+                            </div>
+                            <span className="text-muted-foreground">{req}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Career Path */}
+                    <div className="bg-muted/50 p-4 rounded-xl border border-border">
+                      <h4 className="font-display font-bold text-sm mb-2 flex items-center gap-2">
+                        <Rocket className="w-4 h-4" />
+                        Career Path
+                      </h4>
+                      <p className="text-sm text-muted-foreground">{selectedAccount.careerPath}</p>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                      <Button
+                        variant="hero"
+                        className="flex-1"
+                        onClick={() => {
+                          setSelectedAccount(null);
+                          navigate("/apply");
+                        }}
+                      >
+                        Apply Now
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className="flex-1"
+                        onClick={() => window.open(selectedAccount.link, "_blank")}
+                      >
+                        <Instagram className="w-4 h-4 mr-2" />
+                        View on Instagram
+                        <ExternalLink className="w-3 h-3 ml-2" />
+                      </Button>
+                    </div>
+                  </div>
+                </>
+              )}
+            </DialogContent>
+          </Dialog>
 
           <motion.p
             initial={{ opacity: 0 }}
