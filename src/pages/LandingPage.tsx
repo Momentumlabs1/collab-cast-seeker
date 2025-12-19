@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Sparkles, Users, DollarSign, Zap } from "lucide-react";
+import { ArrowRight, Play, Sparkles, Users, DollarSign, Zap, TrendingUp, UserPlus, Instagram, Bot } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
@@ -13,19 +13,50 @@ const LandingPage = () => {
       description: "Once your first video goes live. Real compensation for real talent.",
     },
     {
-      icon: Users,
-      title: "Multiple Accounts",
-      description: "Tons of animation accounts need content. Endless creative opportunities.",
+      icon: TrendingUp,
+      title: "Profit Sharing",
+      description: "Earn a share of channel revenue and other projects. Grow with us.",
+    },
+    {
+      icon: UserPlus,
+      title: "Build Your Team",
+      description: "Great work? Lead your own team. We have big plans ahead.",
     },
     {
       icon: Sparkles,
       title: "Free Training",
       description: "Learn our style in the teaching phase. No upfront costs, ever.",
     },
+  ];
+
+  const accounts = [
     {
-      icon: Zap,
-      title: "We Pick The Best",
-      description: "Multiple rounds ensure we find true talent. Show us what you've got.",
+      name: "STRICHABI",
+      handle: "@strichabi",
+      link: "https://share.google/hEmGsA8ALS02DBk8X",
+      description: "Our flagship account generating most revenue. We produce this one ourselves.",
+      tag: "Main Account",
+    },
+    {
+      name: "AGENT_STICK",
+      handle: "@agent.stickk",
+      link: "https://www.instagram.com/agent.stickk",
+      description: "Scripts from us, animations needed. Videos & scripts mainly from Strichabi.",
+      tag: "Animation",
+    },
+    {
+      name: "ATOMIC BUCK",
+      handle: "@atomic_buck_",
+      link: "https://www.instagram.com/atomic_buck_",
+      description: "Transforming into a new character style, similar to @yeti_dyor on TikTok.",
+      tag: "Rebrand",
+    },
+    {
+      name: "POVYOURAI",
+      handle: "@povyourai",
+      link: "https://www.instagram.com/povyourai",
+      description: "Currently dormant – open for fresh ideas. Make it yours.",
+      tag: "Open Canvas",
     },
   ];
 
@@ -103,9 +134,8 @@ const LandingPage = () => {
             className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto mb-10"
           >
             Join our team of talented video editors. 
-            Get paid <span className="text-foreground font-semibold">€1,000/month</span> to create 
-            viral content for animation accounts.
-          </motion.p>
+            Get paid <span className="text-foreground font-semibold">€1,000/month</span> plus 
+            profit sharing. Build your own team with great work.</motion.p>
 
           {/* CTA Buttons */}
           <motion.div
@@ -209,6 +239,82 @@ const LandingPage = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Accounts Section */}
+      <section className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-muted rounded-full text-sm text-muted-foreground mb-4">
+              <Bot className="w-4 h-4" />
+              Also working in AI
+            </div>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4">
+              The Accounts You'll Work On
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Multiple animation accounts need editors. Here's what we're building.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {accounts.map((account, index) => (
+              <motion.a
+                key={account.name}
+                href={account.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="group bg-background p-6 rounded-2xl border-2 border-border hover:border-foreground/50 transition-all duration-300 hover:shadow-xl"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-foreground text-background rounded-xl flex items-center justify-center">
+                      <Instagram className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-display font-bold text-xl group-hover:underline">{account.name}</h3>
+                      <p className="text-muted-foreground text-sm">{account.handle}</p>
+                    </div>
+                  </div>
+                  <span className="px-3 py-1 bg-muted text-xs font-medium rounded-full">
+                    {account.tag}
+                  </span>
+                </div>
+                <p className="text-muted-foreground text-sm">{account.description}</p>
+                <div className="mt-4 flex items-center gap-2 text-sm font-medium text-foreground/70 group-hover:text-foreground transition-colors">
+                  View Account
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </motion.a>
+            ))}
+          </div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center text-muted-foreground mt-8 text-sm"
+          >
+            Reference: Character style for Atomic Buck inspired by{" "}
+            <a 
+              href="https://www.tiktok.com/@yeti_dyor" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-foreground underline hover:no-underline"
+            >
+              @yeti_dyor on TikTok
+            </a>
+          </motion.p>
         </div>
       </section>
 
