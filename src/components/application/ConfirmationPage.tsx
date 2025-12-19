@@ -6,6 +6,13 @@ interface ConfirmationPageProps {
   data: ApplicationData;
 }
 
+const accountNames: Record<string, string> = {
+  agent_stick: "AGENT_STICK",
+  atomic_buck: "ATOMIC BUCK",
+  povyourai: "POVYOURAI",
+  strichabi: "STRICHABI",
+};
+
 const ConfirmationPage = ({ data }: ConfirmationPageProps) => {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-6">
@@ -39,8 +46,9 @@ const ConfirmationPage = ({ data }: ConfirmationPageProps) => {
           transition={{ delay: 0.5 }}
           className="text-muted-foreground text-lg mb-8"
         >
-          Thanks for your interest, {data.name.split(" ")[0]}! We'll review
-          your portfolio and get back to you soon.
+          Thanks for your interest, {data.name.split(" ")[0]}! You applied for{" "}
+          <span className="font-semibold text-foreground">{accountNames[data.selectedAccount]}</span>.
+          We'll review your portfolio and get back to you soon.
         </motion.p>
 
         <motion.div
@@ -84,16 +92,16 @@ const ConfirmationPage = ({ data }: ConfirmationPageProps) => {
             </li>
             <li className="flex items-start gap-2">
               <span className="font-semibold text-foreground">2.</span>
-              If qualified: Free teaching phase
+              If selected: Free training phase with my scripts & style
             </li>
             <li className="flex items-start gap-2">
               <span className="font-semibold text-foreground">3.</span>
-              Multiple rounds – we're looking for the best
+              First person to match my level gets the job directly
             </li>
             <li className="flex items-start gap-2">
               <span className="font-semibold text-foreground">4.</span>
-              <span className="font-semibold text-foreground">€1,000/month</span> once
-              your first video goes live
+              <span className="font-semibold text-foreground">$1,000/month</span> once
+              your first video goes live + growth opportunities
             </li>
           </ul>
         </motion.div>

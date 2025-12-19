@@ -2,7 +2,10 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 import StepIndicator from "@/components/application/StepIndicator";
+import AccountSelection from "@/components/application/AccountSelection";
 import StepOne from "@/components/application/StepOne";
 import StepTwo from "@/components/application/StepTwo";
 import StepThree from "@/components/application/StepThree";
@@ -10,6 +13,7 @@ import StepFour from "@/components/application/StepFour";
 import ConfirmationPage from "@/components/application/ConfirmationPage";
 
 export interface ApplicationData {
+  selectedAccount: string;
   name: string;
   location: string;
   instagram: string;
@@ -23,6 +27,7 @@ export interface ApplicationData {
 }
 
 const initialData: ApplicationData = {
+  selectedAccount: "",
   name: "",
   location: "",
   instagram: "",
@@ -37,26 +42,55 @@ const initialData: ApplicationData = {
 
 const Application = () => {
   const navigate = useNavigate();
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(0);
   const [data, setData] = useState<ApplicationData>(initialData);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const totalSteps = 4;
+  const totalSteps = 5;
 
   const updateData = (updates: Partial<ApplicationData>) => {
     setData((prev) => ({ ...prev, ...updates }));
   };
 
+  const submitApplication = async () => {
+    setIsSubmitting(true);
+    try {
+      const { error } = await supabase.from("applications").insert({
+        selected_account: data.selectedAccount,
+        name: data.name,
+        location: data.location,
+        instagram: data.instagram || null,
+        whatsapp: data.whatsapp || null,
+        tools: data.tools,
+        other_tool: data.otherTool || null,
+        experience: data.experience || null,
+        portfolio_links: data.portfolioLinks.filter(l => l.trim()),
+        contact_preference: data.contactPreference,
+      });
+
+      if (error) throw error;
+      
+      setIsSubmitted(true);
+      toast.success("Application submitted successfully!");
+    } catch (error) {
+      console.error("Error submitting application:", error);
+      toast.error("Failed to submit application. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const nextStep = () => {
-    if (currentStep < totalSteps) {
+    if (currentStep < totalSteps - 1) {
       setCurrentStep((prev) => prev + 1);
     } else {
-      setIsSubmitted(true);
+      submitApplication();
     }
   };
 
   const prevStep = () => {
-    if (currentStep > 1) {
+    if (currentStep > 0) {
       setCurrentStep((prev) => prev - 1);
     }
   };
@@ -65,6 +99,8 @@ const Application = () => {
     return <ConfirmationPage data={data} />;
   }
 
+  const stepLabels = ["Account", "About You", "Tools", "Portfolio", "Contact"];
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -72,7 +108,7 @@ const Application = () => {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <button 
-              onClick={() => navigate("/")}
+              onClick={() => currentStep === 0 ? navigate("/") : prevStep()}
               className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -82,7 +118,7 @@ const Application = () => {
               EDITOR APPLICATION
             </h1>
             <span className="text-sm text-muted-foreground">
-              Step {currentStep} of {totalSteps}
+              {stepLabels[currentStep]}
             </span>
           </div>
         </div>
@@ -93,7 +129,7 @@ const Application = () => {
         <motion.div
           className="h-full bg-foreground"
           initial={{ width: 0 }}
-          animate={{ width: `${(currentStep / totalSteps) * 100}%` }}
+          animate={{ width: `${((currentStep + 1) / totalSteps) * 100}%` }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         />
       </div>
@@ -101,9 +137,17 @@ const Application = () => {
       {/* Main Content */}
       <main className="pt-28 pb-20 px-6">
         <div className="container mx-auto max-w-2xl">
-          <StepIndicator currentStep={currentStep} totalSteps={totalSteps} />
+          <StepIndicator currentStep={currentStep + 1} totalSteps={totalSteps} />
 
           <AnimatePresence mode="wait">
+            {currentStep === 0 && (
+              <AccountSelection
+                key="step0"
+                selectedAccount={data.selectedAccount}
+                onSelect={(account) => updateData({ selectedAccount: account })}
+                onNext={nextStep}
+              />
+            )}
             {currentStep === 1 && (
               <StepOne
                 key="step1"
@@ -137,6 +181,7 @@ const Application = () => {
                 updateData={updateData}
                 onNext={nextStep}
                 onBack={prevStep}
+                isSubmitting={isSubmitting}
               />
             )}
           </AnimatePresence>
