@@ -1,16 +1,24 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ApplicationData } from "@/pages/Application";
-import { ArrowLeft, Send, Instagram, MessageCircle } from "lucide-react";
+import { ArrowLeft, Send, Instagram, MessageCircle, Loader2 } from "lucide-react";
 
 interface StepFourProps {
   data: ApplicationData;
   updateData: (updates: Partial<ApplicationData>) => void;
   onNext: () => void;
   onBack: () => void;
+  isSubmitting?: boolean;
 }
 
-const StepFour = ({ data, updateData, onNext, onBack }: StepFourProps) => {
+const accountNames: Record<string, string> = {
+  agent_stick: "AGENT_STICK",
+  atomic_buck: "ATOMIC BUCK",
+  povyourai: "POVYOURAI",
+  strichabi: "STRICHABI",
+};
+
+const StepFour = ({ data, updateData, onNext, onBack, isSubmitting }: StepFourProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -109,6 +117,10 @@ const StepFour = ({ data, updateData, onNext, onBack }: StepFourProps) => {
         <h3 className="font-display font-semibold mb-4">Summary</h3>
         <div className="space-y-3 text-sm">
           <div className="flex justify-between">
+            <span className="text-muted-foreground">Applying for</span>
+            <span className="font-medium">{accountNames[data.selectedAccount] || data.selectedAccount}</span>
+          </div>
+          <div className="flex justify-between">
             <span className="text-muted-foreground">Name</span>
             <span className="font-medium">{data.name}</span>
           </div>
@@ -133,7 +145,7 @@ const StepFour = ({ data, updateData, onNext, onBack }: StepFourProps) => {
       </motion.div>
 
       <div className="mt-10 flex gap-4">
-        <Button variant="outline" size="lg" onClick={onBack} className="flex-1">
+        <Button variant="outline" size="lg" onClick={onBack} className="flex-1" disabled={isSubmitting}>
           <ArrowLeft className="w-5 h-5 mr-2" />
           Back
         </Button>
@@ -142,9 +154,19 @@ const StepFour = ({ data, updateData, onNext, onBack }: StepFourProps) => {
           size="xl"
           className="flex-[2]"
           onClick={onNext}
+          disabled={isSubmitting}
         >
-          Submit Application
-          <Send className="w-5 h-5 ml-2" />
+          {isSubmitting ? (
+            <>
+              <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+              Submitting...
+            </>
+          ) : (
+            <>
+              Submit Application
+              <Send className="w-5 h-5 ml-2" />
+            </>
+          )}
         </Button>
       </div>
     </motion.div>

@@ -28,10 +28,10 @@ const StepOne = ({ data, updateData, onNext }: StepOneProps) => {
         className="bg-foreground text-background rounded-xl p-5 mb-8"
       >
         <p className="font-display font-bold text-xl mb-1">
-          💰 €1,000 / month
+          💰 $1,000 / month
         </p>
         <p className="text-background/80 text-sm">
-          Once your first video goes live. Free teaching phase – multiple rounds, we only take the best!
+          Once your first video goes live. Free training phase – prove yourself, best performer gets the job!
         </p>
       </motion.div>
 
