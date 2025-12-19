@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { ApplicationData } from "@/pages/Index";
+import { ApplicationData } from "@/pages/Application";
 import { ArrowRight, ArrowLeft, Plus, X, Upload, Link as LinkIcon, FileVideo } from "lucide-react";
 import { useRef, useState } from "react";
 
@@ -68,10 +68,10 @@ const StepThree = ({ data, updateData, onNext, onBack }: StepThreeProps) => {
     >
       <div className="mb-8">
         <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight mb-3">
-          Zeig uns deine Arbeit
+          Show us your work
         </h2>
         <p className="text-muted-foreground text-lg">
-          Links zu deinen besten Projekten oder lade Dateien direkt hoch.
+          Links to your best projects or upload files directly.
         </p>
       </div>
 
@@ -83,7 +83,7 @@ const StepThree = ({ data, updateData, onNext, onBack }: StepThreeProps) => {
         className="bg-muted rounded-xl p-5 mb-8 border-2 border-border"
       >
         <p className="text-muted-foreground text-sm">
-          ⚡ Viele Animation-Accounts müssen befüllt werden – wir suchen aktiv nach Talenten!
+          ⚡ Many animation accounts need content – we're actively looking for talent!
         </p>
       </motion.div>
 
@@ -103,7 +103,7 @@ const StepThree = ({ data, updateData, onNext, onBack }: StepThreeProps) => {
                 className="flex gap-2"
               >
                 <Input
-                  placeholder="https://youtube.com/watch?v=... oder Instagram Link"
+                  placeholder="https://youtube.com/watch?v=... or Instagram link"
                   value={link}
                   onChange={(e) => updateLink(index, e.target.value)}
                 />
@@ -127,7 +127,7 @@ const StepThree = ({ data, updateData, onNext, onBack }: StepThreeProps) => {
             className="mt-3"
           >
             <Plus className="w-4 h-4 mr-2" />
-            Weiteren Link hinzufügen
+            Add another link
           </Button>
         </div>
 
@@ -135,7 +135,7 @@ const StepThree = ({ data, updateData, onNext, onBack }: StepThreeProps) => {
         <div>
           <label className="block text-sm font-medium mb-3 flex items-center gap-2">
             <Upload className="w-4 h-4" />
-            Dateien hochladen
+            Upload Files
           </label>
           <div
             onDragOver={handleDragOver}
@@ -158,10 +158,10 @@ const StepThree = ({ data, updateData, onNext, onBack }: StepThreeProps) => {
             />
             <FileVideo className="w-10 h-10 mx-auto mb-3 text-muted-foreground" />
             <p className="font-medium">
-              Dateien hierher ziehen oder klicken
+              Drag files here or click to browse
             </p>
             <p className="text-sm text-muted-foreground mt-1">
-              Videos, Bilder oder PDFs
+              Videos, images, or PDFs
             </p>
           </div>
 
@@ -201,7 +201,7 @@ const StepThree = ({ data, updateData, onNext, onBack }: StepThreeProps) => {
       <div className="mt-10 flex gap-4">
         <Button variant="outline" size="lg" onClick={onBack} className="flex-1">
           <ArrowLeft className="w-5 h-5 mr-2" />
-          Zurück
+          Back
         </Button>
         <Button
           variant="hero"
@@ -210,7 +210,7 @@ const StepThree = ({ data, updateData, onNext, onBack }: StepThreeProps) => {
           onClick={onNext}
           disabled={!hasContent}
         >
-          Weiter
+          Continue
           <ArrowRight className="w-5 h-5 ml-2" />
         </Button>
       </div>

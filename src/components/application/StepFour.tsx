@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ApplicationData } from "@/pages/Index";
+import { ApplicationData } from "@/pages/Application";
 import { ArrowLeft, Send, Instagram, MessageCircle } from "lucide-react";
 
 interface StepFourProps {
@@ -20,10 +20,10 @@ const StepFour = ({ data, updateData, onNext, onBack }: StepFourProps) => {
     >
       <div className="mb-8">
         <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight mb-3">
-          Fast fertig!
+          Almost done!
         </h2>
         <p className="text-muted-foreground text-lg">
-          Wie sollen wir dich kontaktieren?
+          How should we contact you?
         </p>
       </div>
 
@@ -57,7 +57,7 @@ const StepFour = ({ data, updateData, onNext, onBack }: StepFourProps) => {
                   : "text-muted-foreground"
               }`}
             >
-              {data.instagram || "Wir schreiben dir auf Instagram"}
+              {data.instagram || "We'll message you on Instagram"}
             </p>
           </div>
         </motion.button>
@@ -106,7 +106,7 @@ const StepFour = ({ data, updateData, onNext, onBack }: StepFourProps) => {
         transition={{ delay: 0.3 }}
         className="mt-8 p-6 bg-muted rounded-xl border-2 border-border"
       >
-        <h3 className="font-display font-semibold mb-4">Zusammenfassung</h3>
+        <h3 className="font-display font-semibold mb-4">Summary</h3>
         <div className="space-y-3 text-sm">
           <div className="flex justify-between">
             <span className="text-muted-foreground">Name</span>
@@ -125,8 +125,8 @@ const StepFour = ({ data, updateData, onNext, onBack }: StepFourProps) => {
           <div className="flex justify-between">
             <span className="text-muted-foreground">Portfolio</span>
             <span className="font-medium">
-              {data.portfolioLinks.filter((l) => l.trim()).length} Links,{" "}
-              {data.uploadedFiles.length} Dateien
+              {data.portfolioLinks.filter((l) => l.trim()).length} links,{" "}
+              {data.uploadedFiles.length} files
             </span>
           </div>
         </div>
@@ -135,7 +135,7 @@ const StepFour = ({ data, updateData, onNext, onBack }: StepFourProps) => {
       <div className="mt-10 flex gap-4">
         <Button variant="outline" size="lg" onClick={onBack} className="flex-1">
           <ArrowLeft className="w-5 h-5 mr-2" />
-          Zurück
+          Back
         </Button>
         <Button
           variant="hero"
@@ -143,7 +143,7 @@ const StepFour = ({ data, updateData, onNext, onBack }: StepFourProps) => {
           className="flex-[2]"
           onClick={onNext}
         >
-          Bewerbung absenden
+          Submit Application
           <Send className="w-5 h-5 ml-2" />
         </Button>
       </div>

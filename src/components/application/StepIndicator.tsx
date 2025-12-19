@@ -6,10 +6,10 @@ interface StepIndicatorProps {
 }
 
 const stepTitles = [
-  "Persönliche Infos",
-  "Deine Tools",
+  "Personal Info",
+  "Your Tools",
   "Portfolio",
-  "Kontakt",
+  "Contact",
 ];
 
 const StepIndicator = ({ currentStep, totalSteps }: StepIndicatorProps) => {
