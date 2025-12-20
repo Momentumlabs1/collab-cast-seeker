@@ -25,11 +25,41 @@ const InfoPage = () => {
           Now Hiring
         </motion.div>
 
-        {/* Stats - Moved to top */}
+        {/* Main Heading */}
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6 leading-[1.1]"
+        >
+          We Need
+          <br />
+          <span className="relative inline-block">
+            Video Editors
+            <motion.svg
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="absolute -bottom-1 left-0 w-full"
+              viewBox="0 0 300 15"
+              fill="none"
+            >
+              <motion.path
+                d="M2 12 Q 150 -3, 298 12"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                fill="none"
+              />
+            </motion.svg>
+          </span>
+        </motion.h1>
+
+        {/* Stats - Under heading */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.1 }}
+          transition={{ delay: 0.2 }}
           className="flex items-center justify-center gap-6 text-sm mb-8"
         >
           <div className="text-center">
@@ -47,36 +77,6 @@ const InfoPage = () => {
             <p className="text-muted-foreground text-xs">Monthly Pay</p>
           </div>
         </motion.div>
-
-        {/* Main Heading */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-8 leading-[1.1]"
-        >
-          We Need
-          <br />
-          <span className="relative inline-block">
-            Video Editors
-            <motion.svg
-              initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ pathLength: 1, opacity: 1 }}
-              transition={{ duration: 1, delay: 0.6 }}
-              className="absolute -bottom-1 left-0 w-full"
-              viewBox="0 0 300 15"
-              fill="none"
-            >
-              <motion.path
-                d="M2 12 Q 150 -3, 298 12"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                fill="none"
-              />
-            </motion.svg>
-          </span>
-        </motion.h1>
 
         {/* Benefits Grid */}
         <motion.div
