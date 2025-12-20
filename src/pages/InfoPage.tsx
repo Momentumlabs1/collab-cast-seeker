@@ -68,6 +68,24 @@ const InfoPage = () => {
             </p>
             <p className="text-muted-foreground text-lg mt-2">per month</p>
           </motion.div>
+
+          {/* Stats - Small */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="flex items-center justify-center gap-4 text-xs mt-8"
+          >
+            <div className="text-center">
+              <p className="font-display text-lg font-bold">4</p>
+              <p className="text-muted-foreground">Accounts</p>
+            </div>
+            <div className="w-px h-6 bg-border" />
+            <div className="text-center">
+              <p className="font-display text-lg font-bold">350K+</p>
+              <p className="text-muted-foreground">Followers</p>
+            </div>
+          </motion.div>
         </div>
 
         {/* Scroll Indicator - Fixed at bottom */}
@@ -94,22 +112,16 @@ const InfoPage = () => {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_110%)]" />
 
         <div className="relative z-10 text-center max-w-lg mx-auto w-full">
-          {/* Stats */}
+          {/* Page 2 Heading */}
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex items-center justify-center gap-6 text-sm mb-10"
+            className="mb-8"
           >
-            <div className="text-center">
-              <p className="font-display text-3xl font-bold">4</p>
-              <p className="text-muted-foreground text-xs">Accounts</p>
-            </div>
-            <div className="w-px h-10 bg-border" />
-            <div className="text-center">
-              <p className="font-display text-3xl font-bold">350K+</p>
-              <p className="text-muted-foreground text-xs">Followers</p>
-            </div>
+            <h2 className="font-display text-2xl sm:text-3xl font-bold mb-3">
+              What You Get
+            </h2>
           </motion.div>
 
           {/* Benefits Grid */}
@@ -118,7 +130,7 @@ const InfoPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="grid grid-cols-2 gap-3 mb-10"
+            className="grid grid-cols-2 gap-3 mb-8"
           >
             <div className="bg-muted/30 border border-border rounded-xl p-4 text-left">
               <Video className="w-5 h-5 mb-2 text-foreground" />
@@ -151,22 +163,25 @@ const InfoPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 font-medium"
+            className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 font-medium mb-8"
           >
             <Gift className="w-4 h-4" />
             <span>€200 Referral Bonus</span>
           </motion.div>
 
-          {/* Footer */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+          {/* Apply CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="mt-8 text-muted-foreground text-sm"
+            className="bg-muted/50 border border-border rounded-xl p-5"
           >
-            Link in Bio
-          </motion.p>
+            <p className="font-semibold text-sm mb-1">Ready to apply?</p>
+            <p className="text-xs text-muted-foreground">
+              Complete your application right here – takes only 2 minutes!
+            </p>
+          </motion.div>
         </div>
       </section>
     </div>
