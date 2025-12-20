@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Sparkles, Users, DollarSign, Zap, TrendingUp, UserPlus, Instagram, Bot, Star, Trophy, Rocket, ExternalLink, Check, Gift } from "lucide-react";
+import { ArrowRight, Sparkles, Users, DollarSign, Zap, TrendingUp, UserPlus, Instagram, Bot, Star, Trophy, Rocket, ExternalLink, Check, Gift } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ReferralForm from "@/components/referral/ReferralForm";
 import {
@@ -222,14 +222,6 @@ const LandingPage = () => {
               Apply Now
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="gap-2"
-            >
-              <Play className="w-4 h-4" />
-              See Examples
-            </Button>
           </motion.div>
 
           {/* Stats */}
@@ -237,40 +229,25 @@ const LandingPage = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-16 flex items-center justify-center gap-8 sm:gap-16 text-sm"
+            className="mt-12 flex items-center justify-center gap-6 sm:gap-10 text-xs"
           >
-            <div>
-              <p className="font-display text-3xl sm:text-4xl font-bold">4</p>
+            <div className="text-center">
+              <p className="font-display text-xl sm:text-2xl font-bold">4</p>
               <p className="text-muted-foreground">Accounts</p>
             </div>
-            <div className="w-px h-12 bg-border" />
-            <div>
-              <p className="font-display text-3xl sm:text-4xl font-bold">350K+</p>
-              <p className="text-muted-foreground">Total Followers</p>
+            <div className="w-px h-8 bg-border" />
+            <div className="text-center">
+              <p className="font-display text-xl sm:text-2xl font-bold">350K+</p>
+              <p className="text-muted-foreground">Followers</p>
             </div>
-            <div className="w-px h-12 bg-border" />
-            <div>
-              <p className="font-display text-3xl sm:text-4xl font-bold">$1.5k</p>
-              <p className="text-muted-foreground">Max Monthly Pay</p>
+            <div className="w-px h-8 bg-border" />
+            <div className="text-center">
+              <p className="font-display text-xl sm:text-2xl font-bold">$1.5k</p>
+              <p className="text-muted-foreground">Max Pay</p>
             </div>
           </motion.div>
         </div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-foreground/30 rounded-full flex items-start justify-center p-2"
-          >
-            <motion.div className="w-1 h-2 bg-foreground rounded-full" />
-          </motion.div>
-        </motion.div>
       </section>
 
       {/* Accounts Section - Moved UP */}
