@@ -34,7 +34,7 @@ const InfoPage = () => {
             transition={{ delay: 0.1 }}
             className="font-display text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-8 leading-[1.1]"
           >
-            We Need
+            We Hire
             <br />
             <span className="relative inline-block">
               Video Editors
@@ -62,31 +62,30 @@ const InfoPage = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
-            className="mb-12"
           >
             <p className="font-display text-4xl sm:text-5xl md:text-6xl font-bold">
               $500-1.5k
             </p>
             <p className="text-muted-foreground text-lg mt-2">per month</p>
           </motion.div>
-
-          {/* Scroll Indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          >
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              className="flex flex-col items-center gap-2 text-muted-foreground"
-            >
-              <span className="text-xs">Swipe up</span>
-              <ChevronDown className="w-5 h-5" />
-            </motion.div>
-          </motion.div>
         </div>
+
+        {/* Scroll Indicator - Fixed at bottom */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        >
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            className="flex flex-col items-center gap-2 text-muted-foreground"
+          >
+            <span className="text-xs">More infos on next page</span>
+            <ChevronDown className="w-5 h-5" />
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* PAGE 2 - Details */}
