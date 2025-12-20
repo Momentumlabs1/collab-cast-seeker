@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Rocket, Star, Trophy, Users } from "lucide-react";
+import { ArrowRight, Rocket, Star, Users } from "lucide-react";
 
 interface AccountSelectionProps {
   selectedAccount: string;
@@ -11,43 +11,33 @@ interface AccountSelectionProps {
 const accounts = [
   {
     id: "agent_stick",
-    name: "AGENT_STICK",
+    name: "AGENT_STICK → STRICHABI",
     handle: "@agent_stick",
-    tag: "Start Here",
+    tag: "Karriere-Pfad",
     tagColor: "bg-emerald-500",
-    description: "Entry-level position. Learn our style, prove yourself.",
+    description: "Starte bei Agent Stick, werde trainiert und steige zu Strichabi auf. Höchste Bezahlung & Gewinnbeteiligung.",
     platforms: "Instagram & TikTok",
     icon: Rocket,
-  },
-  {
-    id: "atomic_buck",
-    name: "ATOMIC BUCK",
-    handle: "@atomicbuck",
-    tag: "Advanced",
-    tagColor: "bg-blue-500",
-    description: "Complex animations and VFX. For experienced editors.",
-    platforms: "Instagram",
-    icon: Star,
   },
   {
     id: "povyourai",
     name: "POVYOURAI",
     handle: "@povyourai",
-    tag: "Creative",
+    tag: "KI-Content",
     tagColor: "bg-purple-500",
-    description: "AI-themed content with unique storytelling.",
+    description: "Eigenständiger Account für KI-themed Content mit einzigartigem Storytelling.",
     platforms: "Instagram",
     icon: Users,
   },
   {
-    id: "strichabi",
-    name: "STRICHABI",
-    handle: "@strichabi",
-    tag: "Elite",
-    tagColor: "bg-amber-500",
-    description: "Top performer position. Highest pay & profit sharing.",
+    id: "atomic_buck",
+    name: "ATOMIC BUCK",
+    handle: "@atomicbuck",
+    tag: "Kreativ-Projekt",
+    tagColor: "bg-blue-500",
+    description: "Inaktiver Account – bring deine eigenen Ideen mit und erwecke ihn zum Leben!",
     platforms: "Instagram",
-    icon: Trophy,
+    icon: Star,
   },
 ];
 
@@ -67,19 +57,19 @@ const AccountSelection = ({ selectedAccount, onSelect, onNext }: AccountSelectio
         className="bg-foreground text-background rounded-xl p-5 mb-8"
       >
         <p className="font-display font-bold text-xl mb-1">
-          🎯 Choose Your Path
+          🎯 Wähle deinen Pfad
         </p>
         <p className="text-background/80 text-sm">
-          Each account has different requirements and pay. Start with Agent Stick if you're new!
+          3 verschiedene Wege – jeder mit eigenen Möglichkeiten und Anforderungen.
         </p>
       </motion.div>
 
       <div className="mb-8">
         <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight mb-3">
-          Which account do you want to edit for?
+          Für welchen Account möchtest du arbeiten?
         </h2>
         <p className="text-muted-foreground text-lg">
-          Select the account that matches your skill level.
+          Wähle den Pfad, der am besten zu dir passt.
         </p>
       </div>
 
@@ -151,7 +141,7 @@ const AccountSelection = ({ selectedAccount, onSelect, onNext }: AccountSelectio
         className="mt-6 p-4 bg-muted rounded-xl border border-border"
       >
         <p className="text-sm text-muted-foreground">
-          <span className="font-semibold text-foreground">Pro tip:</span> Start with Agent Stick to get trained for free. Best performers move up to higher-paying accounts!
+          <span className="font-semibold text-foreground">Tipp:</span> Bei Agent Stick wirst du kostenlos trainiert und kannst zu Strichabi aufsteigen!
         </p>
       </motion.div>
 
