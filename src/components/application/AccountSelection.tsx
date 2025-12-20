@@ -13,9 +13,9 @@ const accounts = [
     id: "agent_stick",
     name: "AGENT_STICK → STRICHABI",
     handle: "@agent_stick",
-    tag: "Karriere-Pfad",
+    tag: "Career Path",
     tagColor: "bg-emerald-500",
-    description: "Starte bei Agent Stick, werde trainiert und steige zu Strichabi auf. Höchste Bezahlung & Gewinnbeteiligung.",
+    description: "Start at Agent Stick, get trained, and move up to Strichabi. Highest pay & profit sharing.",
     platforms: "Instagram & TikTok",
     icon: Rocket,
   },
@@ -23,9 +23,9 @@ const accounts = [
     id: "povyourai",
     name: "POVYOURAI",
     handle: "@povyourai",
-    tag: "KI-Content",
+    tag: "AI Content",
     tagColor: "bg-purple-500",
-    description: "Eigenständiger Account für KI-themed Content mit einzigartigem Storytelling.",
+    description: "Standalone account for AI-themed content with unique storytelling.",
     platforms: "Instagram",
     icon: Users,
   },
@@ -33,9 +33,9 @@ const accounts = [
     id: "atomic_buck",
     name: "ATOMIC BUCK",
     handle: "@atomicbuck",
-    tag: "Kreativ-Projekt",
+    tag: "Creative Project",
     tagColor: "bg-blue-500",
-    description: "Inaktiver Account – bring deine eigenen Ideen mit und erwecke ihn zum Leben!",
+    description: "Inactive account – bring your own ideas and bring it back to life!",
     platforms: "Instagram",
     icon: Star,
   },
@@ -57,19 +57,19 @@ const AccountSelection = ({ selectedAccount, onSelect, onNext }: AccountSelectio
         className="bg-foreground text-background rounded-xl p-5 mb-8"
       >
         <p className="font-display font-bold text-xl mb-1">
-          🎯 Wähle deinen Pfad
+          🎯 Choose Your Path
         </p>
         <p className="text-background/80 text-sm">
-          3 verschiedene Wege – jeder mit eigenen Möglichkeiten und Anforderungen.
+          3 different paths – each with its own opportunities and requirements.
         </p>
       </motion.div>
 
       <div className="mb-8">
         <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight mb-3">
-          Für welchen Account möchtest du arbeiten?
+          Which account do you want to edit for?
         </h2>
         <p className="text-muted-foreground text-lg">
-          Wähle den Pfad, der am besten zu dir passt.
+          Select the path that fits you best.
         </p>
       </div>
 
@@ -141,7 +141,7 @@ const AccountSelection = ({ selectedAccount, onSelect, onNext }: AccountSelectio
         className="mt-6 p-4 bg-muted rounded-xl border border-border"
       >
         <p className="text-sm text-muted-foreground">
-          <span className="font-semibold text-foreground">Tipp:</span> Bei Agent Stick wirst du kostenlos trainiert und kannst zu Strichabi aufsteigen!
+          <span className="font-semibold text-foreground">Pro tip:</span> Agent Stick offers free training and top performers move up to Strichabi!
         </p>
       </motion.div>
 
