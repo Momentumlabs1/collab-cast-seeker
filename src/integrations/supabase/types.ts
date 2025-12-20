@@ -19,6 +19,7 @@ export type Database = {
           contact_preference: string
           created_at: string
           experience: string | null
+          file_urls: string[] | null
           id: string
           instagram: string | null
           location: string
@@ -35,6 +36,7 @@ export type Database = {
           contact_preference?: string
           created_at?: string
           experience?: string | null
+          file_urls?: string[] | null
           id?: string
           instagram?: string | null
           location: string
@@ -51,6 +53,7 @@ export type Database = {
           contact_preference?: string
           created_at?: string
           experience?: string | null
+          file_urls?: string[] | null
           id?: string
           instagram?: string | null
           location?: string
@@ -62,6 +65,42 @@ export type Database = {
           tools?: string[] | null
           updated_at?: string
           whatsapp?: string | null
+        }
+        Relationships: []
+      }
+      referrals: {
+        Row: {
+          created_at: string
+          id: string
+          notes: string | null
+          referred_contact: string
+          referred_name: string
+          referrer_contact: string
+          referrer_name: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          notes?: string | null
+          referred_contact: string
+          referred_name: string
+          referrer_contact: string
+          referrer_name: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          notes?: string | null
+          referred_contact?: string
+          referred_name?: string
+          referrer_contact?: string
+          referrer_name?: string
+          status?: string
+          updated_at?: string
         }
         Relationships: []
       }
