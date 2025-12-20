@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Video, Zap, TrendingUp, UserPlus, Gift, ChevronDown } from "lucide-react";
+import { Video, Zap, TrendingUp, UserPlus, Gift } from "lucide-react";
 
 const InfoPage = () => {
   return (
@@ -14,19 +14,6 @@ const InfoPage = () => {
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-foreground/5 rounded-full blur-3xl" />
 
         <div className="relative z-10 text-center max-w-lg mx-auto w-full">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-foreground text-background rounded-full text-sm font-medium mb-8"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-background opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-background" />
-            </span>
-            Now Hiring
-          </motion.div>
-
           {/* Main Heading */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -88,22 +75,6 @@ const InfoPage = () => {
           </motion.div>
         </div>
 
-        {/* Scroll Indicator - Fixed at bottom */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className="flex flex-col items-center gap-2 text-muted-foreground"
-          >
-            <span className="text-xs">More infos on next page</span>
-            <ChevronDown className="w-5 h-5" />
-          </motion.div>
-        </motion.div>
       </section>
 
       {/* PAGE 2 - Details */}
