@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { DollarSign, Video, Zap, Star, Gift, TrendingUp, UserPlus, Sparkles } from "lucide-react";
+import { Video, Zap, TrendingUp, UserPlus, Gift } from "lucide-react";
 
 const InfoPage = () => {
   return (
@@ -25,12 +25,35 @@ const InfoPage = () => {
           Now Hiring
         </motion.div>
 
+        {/* Stats - Moved to top */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.1 }}
+          className="flex items-center justify-center gap-6 text-sm mb-8"
+        >
+          <div className="text-center">
+            <p className="font-display text-2xl font-bold">4</p>
+            <p className="text-muted-foreground text-xs">Accounts</p>
+          </div>
+          <div className="w-px h-8 bg-border" />
+          <div className="text-center">
+            <p className="font-display text-2xl font-bold">350K+</p>
+            <p className="text-muted-foreground text-xs">Followers</p>
+          </div>
+          <div className="w-px h-8 bg-border" />
+          <div className="text-center">
+            <p className="font-display text-2xl font-bold">$500-1.5k</p>
+            <p className="text-muted-foreground text-xs">Monthly Pay</p>
+          </div>
+        </motion.div>
+
         {/* Main Heading */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-3 leading-[1.1]"
+          transition={{ delay: 0.2 }}
+          className="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-8 leading-[1.1]"
         >
           We Need
           <br />
@@ -39,7 +62,7 @@ const InfoPage = () => {
             <motion.svg
               initial={{ pathLength: 0, opacity: 0 }}
               animate={{ pathLength: 1, opacity: 1 }}
-              transition={{ duration: 1, delay: 0.5 }}
+              transition={{ duration: 1, delay: 0.6 }}
               className="absolute -bottom-1 left-0 w-full"
               viewBox="0 0 300 15"
               fill="none"
@@ -54,18 +77,6 @@ const InfoPage = () => {
             </motion.svg>
           </span>
         </motion.h1>
-
-        {/* Earnings Highlight */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2 }}
-          className="inline-flex items-center gap-2 bg-muted/50 border border-border rounded-full px-5 py-2 mb-8"
-        >
-          <DollarSign className="w-5 h-5 text-foreground" />
-          <span className="text-xl font-bold">$500 – $1,500</span>
-          <span className="text-muted-foreground">/ month</span>
-        </motion.div>
 
         {/* Benefits Grid */}
         <motion.div
@@ -99,48 +110,11 @@ const InfoPage = () => {
           </div>
         </motion.div>
 
-        {/* Tools */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="flex flex-wrap justify-center gap-2 mb-8"
-        >
-          {["CapCut", "Premiere Pro", "After Effects", "DaVinci"].map((tool) => (
-            <span key={tool} className="px-3 py-1 bg-foreground text-background rounded-full text-xs font-medium">
-              {tool}
-            </span>
-          ))}
-        </motion.div>
-
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="flex items-center justify-center gap-6 text-sm mb-8"
-        >
-          <div className="text-center">
-            <p className="font-display text-2xl font-bold">4</p>
-            <p className="text-muted-foreground text-xs">Accounts</p>
-          </div>
-          <div className="w-px h-8 bg-border" />
-          <div className="text-center">
-            <p className="font-display text-2xl font-bold">350K+</p>
-            <p className="text-muted-foreground text-xs">Followers</p>
-          </div>
-          <div className="w-px h-8 bg-border" />
-          <div className="text-center">
-            <p className="font-display text-2xl font-bold">$1.5k</p>
-            <p className="text-muted-foreground text-xs">Max Pay</p>
-          </div>
-        </motion.div>
-
         {/* Referral Bonus */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
+          transition={{ delay: 0.4 }}
           className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2 font-medium"
         >
           <Gift className="w-4 h-4" />
@@ -151,7 +125,7 @@ const InfoPage = () => {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.7 }}
+          transition={{ delay: 0.5 }}
           className="mt-6 text-muted-foreground text-sm"
         >
           Link in Bio
