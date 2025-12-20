@@ -56,21 +56,21 @@ const InfoPage = () => {
             <p className="text-muted-foreground text-lg mt-2">per month</p>
           </motion.div>
 
-          {/* Stats - Small */}
+          {/* Stats */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="flex items-center justify-center gap-4 text-xs mt-8"
+            className="flex items-center justify-center gap-8 mt-12"
           >
             <div className="text-center">
-              <p className="font-display text-lg font-bold">4</p>
-              <p className="text-muted-foreground">Accounts</p>
+              <p className="font-display text-2xl font-bold">4</p>
+              <p className="text-muted-foreground text-sm">Accounts</p>
             </div>
-            <div className="w-px h-6 bg-border" />
+            <div className="w-px h-10 bg-border" />
             <div className="text-center">
-              <p className="font-display text-lg font-bold">350K+</p>
-              <p className="text-muted-foreground">Followers</p>
+              <p className="font-display text-2xl font-bold">350K+</p>
+              <p className="text-muted-foreground text-sm">Followers</p>
             </div>
           </motion.div>
         </div>
