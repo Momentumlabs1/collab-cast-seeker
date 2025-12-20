@@ -1,176 +1,161 @@
 import { motion } from "framer-motion";
-import { DollarSign, Users, Video, Zap, ArrowRight, Star, Gift } from "lucide-react";
+import { DollarSign, Video, Zap, Star, Gift, TrendingUp, UserPlus, Sparkles } from "lucide-react";
 
 const InfoPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-zinc-900 to-black text-white overflow-hidden">
-      {/* Main Hero Section - Optimized for Story Screenshot */}
-      <div className="relative px-6 py-12 flex flex-col items-center justify-center min-h-screen">
-        {/* Background Glow Effects */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] bg-blue-600/20 rounded-full blur-[100px]" />
-        
-        {/* Logo/Brand */}
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 py-12 relative overflow-hidden">
+      {/* Background Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_110%)]" />
+      
+      {/* Floating Elements */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-foreground/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-foreground/5 rounded-full blur-3xl" />
+
+      <div className="relative z-10 text-center max-w-lg mx-auto w-full">
+        {/* Badge */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-8"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-foreground text-background rounded-full text-sm font-medium mb-6"
         >
-          <span className="text-lg font-medium tracking-[0.3em] text-zinc-400 uppercase">
-            Wir suchen
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-background opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-background" />
           </span>
+          Now Hiring
         </motion.div>
 
-        {/* Main Headline */}
+        {/* Main Heading */}
         <motion.h1
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-5xl md:text-7xl font-black text-center mb-4 bg-gradient-to-r from-white via-purple-200 to-white bg-clip-text text-transparent"
+          className="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-3 leading-[1.1]"
         >
-          VIDEO EDITOREN
+          We Need
+          <br />
+          <span className="relative inline-block">
+            Video Editors
+            <motion.svg
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="absolute -bottom-1 left-0 w-full"
+              viewBox="0 0 300 15"
+              fill="none"
+            >
+              <motion.path
+                d="M2 12 Q 150 -3, 298 12"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                fill="none"
+              />
+            </motion.svg>
+          </span>
         </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="text-xl md:text-2xl text-zinc-400 text-center mb-12"
-        >
-          für unsere Creator-Accounts
-        </motion.p>
-
         {/* Earnings Highlight */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2 }}
+          className="inline-flex items-center gap-2 bg-muted/50 border border-border rounded-full px-5 py-2 mb-8"
+        >
+          <DollarSign className="w-5 h-5 text-foreground" />
+          <span className="text-xl font-bold">$500 – $1,500</span>
+          <span className="text-muted-foreground">/ month</span>
+        </motion.div>
+
+        {/* Benefits Grid */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="bg-gradient-to-r from-purple-600/20 via-purple-500/30 to-purple-600/20 border border-purple-500/40 rounded-2xl p-8 mb-10 text-center backdrop-blur-sm"
+          className="grid grid-cols-2 gap-3 mb-8"
         >
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <DollarSign className="w-8 h-8 text-green-400" />
-            <span className="text-4xl md:text-5xl font-black text-green-400">
-              500-2000€
-            </span>
+          <div className="bg-muted/30 border border-border rounded-xl p-4 text-left">
+            <Video className="w-5 h-5 mb-2 text-foreground" />
+            <p className="font-semibold text-sm">Reels & Shorts</p>
+            <p className="text-xs text-muted-foreground">Edit engaging content</p>
           </div>
-          <p className="text-lg text-zinc-300">pro Monat verdienen</p>
+
+          <div className="bg-muted/30 border border-border rounded-xl p-4 text-left">
+            <Zap className="w-5 h-5 mb-2 text-foreground" />
+            <p className="font-semibold text-sm">Fully Remote</p>
+            <p className="text-xs text-muted-foreground">Work from anywhere</p>
+          </div>
+
+          <div className="bg-muted/30 border border-border rounded-xl p-4 text-left">
+            <TrendingUp className="w-5 h-5 mb-2 text-foreground" />
+            <p className="font-semibold text-sm">Profit Sharing</p>
+            <p className="text-xs text-muted-foreground">Grow with us</p>
+          </div>
+
+          <div className="bg-muted/30 border border-border rounded-xl p-4 text-left">
+            <UserPlus className="w-5 h-5 mb-2 text-foreground" />
+            <p className="font-semibold text-sm">Build Your Team</p>
+            <p className="text-xs text-muted-foreground">Lead with great work</p>
+          </div>
         </motion.div>
 
-        {/* Key Benefits */}
+        {/* Tools */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="grid gap-4 w-full max-w-sm mb-10"
+          className="flex flex-wrap justify-center gap-2 mb-8"
         >
-          <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl p-4">
-            <div className="w-12 h-12 bg-purple-600/30 rounded-lg flex items-center justify-center">
-              <Video className="w-6 h-6 text-purple-400" />
-            </div>
-            <div>
-              <p className="font-bold text-white">Reels & Shorts</p>
-              <p className="text-sm text-zinc-400">Schneiden & Gestalten</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl p-4">
-            <div className="w-12 h-12 bg-blue-600/30 rounded-lg flex items-center justify-center">
-              <Zap className="w-6 h-6 text-blue-400" />
-            </div>
-            <div>
-              <p className="font-bold text-white">Remote & Flexibel</p>
-              <p className="text-sm text-zinc-400">Arbeite von überall</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl p-4">
-            <div className="w-12 h-12 bg-green-600/30 rounded-lg flex items-center justify-center">
-              <Star className="w-6 h-6 text-green-400" />
-            </div>
-            <div>
-              <p className="font-bold text-white">Langfristig</p>
-              <p className="text-sm text-zinc-400">Feste Zusammenarbeit</p>
-            </div>
-          </div>
+          {["CapCut", "Premiere Pro", "After Effects", "DaVinci"].map((tool) => (
+            <span key={tool} className="px-3 py-1 bg-foreground text-background rounded-full text-xs font-medium">
+              {tool}
+            </span>
+          ))}
         </motion.div>
 
-        {/* CTA */}
+        {/* Stats */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="text-center"
+          className="flex items-center justify-center gap-6 text-sm mb-8"
         >
-          <div className="bg-white text-black font-bold text-lg px-8 py-4 rounded-full inline-flex items-center gap-2">
-            JETZT BEWERBEN
-            <ArrowRight className="w-5 h-5" />
+          <div className="text-center">
+            <p className="font-display text-2xl font-bold">4</p>
+            <p className="text-muted-foreground text-xs">Accounts</p>
           </div>
-          <p className="mt-4 text-zinc-500 text-sm">Link in Bio</p>
+          <div className="w-px h-8 bg-border" />
+          <div className="text-center">
+            <p className="font-display text-2xl font-bold">350K+</p>
+            <p className="text-muted-foreground text-xs">Followers</p>
+          </div>
+          <div className="w-px h-8 bg-border" />
+          <div className="text-center">
+            <p className="font-display text-2xl font-bold">$1.5k</p>
+            <p className="text-muted-foreground text-xs">Max Pay</p>
+          </div>
         </motion.div>
 
-        {/* Referral Bonus Badge */}
+        {/* Referral Bonus */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/40 rounded-full px-6 py-3 flex items-center gap-2"
+          className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2 font-medium"
         >
-          <Gift className="w-5 h-5 text-yellow-400" />
-          <span className="text-yellow-300 font-bold">€200 Bonus für Empfehlungen!</span>
+          <Gift className="w-4 h-4" />
+          <span>€200 Referral Bonus</span>
         </motion.div>
-      </div>
 
-      {/* Second Section - More Details (can be scrolled to for another screenshot) */}
-      <div className="relative px-6 py-16 flex flex-col items-center min-h-screen bg-gradient-to-b from-zinc-900 to-black">
-        <motion.h2
+        {/* Footer */}
+        <motion.p
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          className="text-3xl md:text-4xl font-black text-center mb-12"
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7 }}
+          className="mt-6 text-muted-foreground text-sm"
         >
-          WAS WIR SUCHEN
-        </motion.h2>
-
-        <div className="grid gap-6 w-full max-w-md">
-          <div className="bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-2xl p-6">
-            <h3 className="text-xl font-bold mb-4 text-purple-300">Tools</h3>
-            <div className="flex flex-wrap gap-2">
-              {["CapCut", "Premiere Pro", "After Effects", "DaVinci"].map((tool) => (
-                <span key={tool} className="bg-white/10 px-3 py-1 rounded-full text-sm">
-                  {tool}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-2xl p-6">
-            <h3 className="text-xl font-bold mb-4 text-blue-300">Du solltest</h3>
-            <ul className="space-y-2 text-zinc-300">
-              <li className="flex items-center gap-2">
-                <span className="text-green-400">✓</span> Trends verstehen
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="text-green-400">✓</span> Schnell & zuverlässig sein
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="text-green-400">✓</span> Kreativ denken
-              </li>
-            </ul>
-          </div>
-
-          <div className="bg-gradient-to-br from-green-500/20 to-green-600/10 border border-green-500/30 rounded-2xl p-6">
-            <h3 className="text-xl font-bold mb-4 text-green-300">Accounts</h3>
-            <div className="space-y-2 text-zinc-300">
-              <p>• ATOMIC BUCK (Geld & Mindset)</p>
-              <p>• WOOSH BUCK (Daily Motivation)</p>
-              <p>• THE BUCK (Unterhaltung)</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-12 text-center">
-          <p className="text-2xl font-bold text-white mb-2">Bereit?</p>
-          <p className="text-zinc-400">Swipe up oder Link in Bio!</p>
-        </div>
+          Link in Bio
+        </motion.p>
       </div>
     </div>
   );
