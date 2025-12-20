@@ -12,7 +12,8 @@ import {
   MessageCircle,
   MapPin,
   ArrowLeft,
-  Gift
+  Gift,
+  FileVideo
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -293,6 +294,7 @@ export default function AdminDashboard() {
                       <TableHead>Location</TableHead>
                       <TableHead>Kontakt</TableHead>
                       <TableHead>Tools</TableHead>
+                      <TableHead>Files</TableHead>
                       <TableHead>Datum</TableHead>
                       <TableHead>Status</TableHead>
                       <TableHead className="text-right">Aktionen</TableHead>
@@ -360,6 +362,16 @@ export default function AdminDashboard() {
                                 </Badge>
                               )}
                             </div>
+                          </TableCell>
+                          <TableCell>
+                            {app.file_urls && app.file_urls.length > 0 ? (
+                              <Badge variant="secondary" className="text-xs gap-1">
+                                <FileVideo className="h-3 w-3" />
+                                {app.file_urls.length}
+                              </Badge>
+                            ) : (
+                              <span className="text-muted-foreground text-xs">–</span>
+                            )}
                           </TableCell>
                           <TableCell className="text-sm text-muted-foreground">
                             {new Date(app.created_at).toLocaleDateString("de-DE")}
