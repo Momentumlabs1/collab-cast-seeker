@@ -180,12 +180,13 @@ export default function ApplicationDetailModal({
           )}
 
           {/* Uploaded Files */}
-          {application.file_urls && application.file_urls.length > 0 && (
-            <div>
-              <p className="text-sm font-medium mb-2 flex items-center gap-2">
-                <FileVideo className="h-4 w-4" />
-                Uploaded Files
-              </p>
+          <div>
+            <p className="text-sm font-medium mb-2 flex items-center gap-2">
+              <FileVideo className="h-4 w-4" />
+              Uploaded Files
+            </p>
+
+            {application.file_urls && application.file_urls.length > 0 ? (
               <div className="space-y-2">
                 {application.file_urls.map((url, index) => (
                   <a
@@ -201,8 +202,14 @@ export default function ApplicationDetailModal({
                   </a>
                 ))}
               </div>
-            </div>
-          )}
+            ) : (
+              <div className="p-4 bg-muted rounded-lg">
+                <p className="text-sm text-muted-foreground">
+                  No files were attached to this application.
+                </p>
+              </div>
+            )}
+          </div>
 
           {/* Status Change */}
           <div className="pt-4 border-t border-border">
