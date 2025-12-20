@@ -83,16 +83,19 @@ const InfoPage = () => {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_110%)]" />
 
         <div className="relative z-10 text-center max-w-lg mx-auto w-full">
-          {/* Page 2 Heading */}
+          {/* Apply CTA - Main focus */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-8"
+            className="mb-10"
           >
-            <h2 className="font-display text-2xl sm:text-3xl font-bold mb-3">
-              What You Get
+            <h2 className="font-display text-2xl sm:text-3xl font-bold mb-2">
+              Ready to apply?
             </h2>
+            <p className="text-muted-foreground text-sm">
+              Complete your application right here – takes only 2 minutes!
+            </p>
           </motion.div>
 
           {/* Benefits Grid */}
@@ -134,24 +137,10 @@ const InfoPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 font-medium mb-8"
+            className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 font-medium"
           >
             <Gift className="w-4 h-4" />
             <span>€200 Referral Bonus</span>
-          </motion.div>
-
-          {/* Apply CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="bg-muted/50 border border-border rounded-xl p-5"
-          >
-            <p className="font-semibold text-sm mb-1">Ready to apply?</p>
-            <p className="text-xs text-muted-foreground">
-              Complete your application right here – takes only 2 minutes!
-            </p>
           </motion.div>
         </div>
       </section>
