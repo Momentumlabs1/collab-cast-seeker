@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Sparkles, Users, DollarSign, Zap, TrendingUp, UserPlus, Instagram, Bot, Star, Trophy, Rocket, ExternalLink, Check } from "lucide-react";
+import { ArrowRight, Play, Sparkles, Users, DollarSign, Zap, TrendingUp, UserPlus, Instagram, Bot, Star, Trophy, Rocket, ExternalLink, Check, Gift } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import ReferralForm from "@/components/referral/ReferralForm";
 import {
   Dialog,
   DialogContent,
@@ -27,6 +28,7 @@ interface Account {
 const LandingPage = () => {
   const navigate = useNavigate();
   const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
+  const [referralOpen, setReferralOpen] = useState(false);
 
   const features = [
     {
@@ -650,6 +652,41 @@ const LandingPage = () => {
         </div>
       </section>
 
+      {/* Referral Section - €200 Bonus */}
+      <section className="py-24 px-6 bg-muted/30">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-background border-2 border-foreground rounded-2xl p-8 sm:p-12"
+          >
+            <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
+              <div className="w-20 h-20 bg-foreground text-background rounded-2xl flex items-center justify-center shrink-0">
+                <Gift className="w-10 h-10" />
+              </div>
+              <div className="text-center sm:text-left flex-1">
+                <h2 className="font-display text-2xl sm:text-3xl font-bold mb-2">
+                  Kennst du einen talentierten Editor?
+                </h2>
+                <p className="text-muted-foreground mb-4">
+                  Empfehle einen Editor und erhalte <span className="text-foreground font-bold">€200 Bonus</span> wenn wir ihn/sie einstellen!
+                </p>
+                <Button
+                  variant="hero"
+                  size="lg"
+                  onClick={() => setReferralOpen(true)}
+                  className="gap-2"
+                >
+                  <Gift className="w-5 h-5" />
+                  Jemanden empfehlen
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-24 px-6 bg-foreground text-background">
         <div className="max-w-4xl mx-auto text-center">
@@ -688,6 +725,9 @@ const LandingPage = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Referral Form Modal */}
+      <ReferralForm open={referralOpen} onOpenChange={setReferralOpen} />
 
       {/* Footer */}
       <footer className="py-8 px-6 border-t border-border">

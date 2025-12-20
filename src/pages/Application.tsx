@@ -53,9 +53,42 @@ const Application = () => {
     setData((prev) => ({ ...prev, ...updates }));
   };
 
+  const uploadFiles = async (files: File[]): Promise<string[]> => {
+    const uploadedUrls: string[] = [];
+
+    for (const file of files) {
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+      const filePath = `uploads/${fileName}`;
+
+      const { error } = await supabase.storage
+        .from('application-files')
+        .upload(filePath, file);
+
+      if (error) {
+        console.error('Error uploading file:', error);
+        throw error;
+      }
+
+      const { data: publicUrlData } = supabase.storage
+        .from('application-files')
+        .getPublicUrl(filePath);
+
+      uploadedUrls.push(publicUrlData.publicUrl);
+    }
+
+    return uploadedUrls;
+  };
+
   const submitApplication = async () => {
     setIsSubmitting(true);
     try {
+      // Upload files first
+      let fileUrls: string[] = [];
+      if (data.uploadedFiles.length > 0) {
+        fileUrls = await uploadFiles(data.uploadedFiles);
+      }
+
       const { error } = await supabase.from("applications").insert({
         selected_account: data.selectedAccount,
         name: data.name,
@@ -66,6 +99,7 @@ const Application = () => {
         other_tool: data.otherTool || null,
         experience: data.experience || null,
         portfolio_links: data.portfolioLinks.filter(l => l.trim()),
+        file_urls: fileUrls,
         contact_preference: data.contactPreference,
       });
 
