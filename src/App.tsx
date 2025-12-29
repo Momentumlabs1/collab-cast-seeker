@@ -30,7 +30,7 @@ const App = () => (
           <Route path="/login" element={<TeamLogin />} />
           <Route path="/workflow" element={<WorkflowLayout />}>
             <Route index element={<AcademyDashboard />} />
-            <Route path="files" element={<FilesPage isAdmin />} />
+            <Route path="files" element={<FilesPage />} />
             <Route path="phase/:phaseId" element={<PhaseViewer />} />
           </Route>
           <Route path="*" element={<NotFound />} />

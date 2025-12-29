@@ -13,7 +13,8 @@ import {
   MapPin,
   ArrowLeft,
   Gift,
-  FileVideo
+  FileVideo,
+  FileText
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -36,6 +37,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link } from "react-router-dom";
 import ApplicationDetailModal from "@/components/admin/ApplicationDetailModal";
 import ReferralsTab from "@/components/admin/ReferralsTab";
+import DesignsFilesTab from "@/components/admin/DesignsFilesTab";
 
 interface Application {
   id: string;
@@ -163,11 +165,15 @@ export default function AdminDashboard() {
           <TabsList>
             <TabsTrigger value="applications" className="gap-2">
               <Users className="h-4 w-4" />
-              Bewerbungen
+              Applications
             </TabsTrigger>
             <TabsTrigger value="referrals" className="gap-2">
               <Gift className="h-4 w-4" />
-              Empfehlungen (€200)
+              Referrals (€200)
+            </TabsTrigger>
+            <TabsTrigger value="designs-files" className="gap-2">
+              <FileText className="h-4 w-4" />
+              Designs & Files
             </TabsTrigger>
           </TabsList>
 
@@ -413,6 +419,10 @@ export default function AdminDashboard() {
 
           <TabsContent value="referrals">
             <ReferralsTab />
+          </TabsContent>
+
+          <TabsContent value="designs-files">
+            <DesignsFilesTab />
           </TabsContent>
         </Tabs>
       </div>
