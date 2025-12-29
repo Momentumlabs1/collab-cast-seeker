@@ -103,7 +103,7 @@ export default function AcademyDashboard() {
           Hey {session?.name}!
         </h1>
         <p className="text-[hsl(0,0%,55%)]">
-          So machen wir die StrichAbi Videos
+          StrichAbi Video Production Workflow
         </p>
       </motion.div>
 
@@ -116,9 +116,9 @@ export default function AcademyDashboard() {
       >
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-lg font-semibold text-[hsl(0,0%,90%)]">Fortschritt</h2>
+            <h2 className="text-lg font-semibold text-[hsl(0,0%,90%)]">Progress</h2>
             <p className="text-sm text-[hsl(0,0%,55%)]">
-              {completedCount} von {totalPhases} Phasen abgeschlossen
+              {completedCount} of {totalPhases} phases completed
             </p>
           </div>
           <div className="text-3xl font-bold text-[hsl(var(--workflow-purple))]">
