@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Users, DollarSign, Zap, TrendingUp, UserPlus, Instagram, Bot, Star, Trophy, Rocket, ExternalLink, Check, Gift } from "lucide-react";
+import { ArrowRight, Sparkles, Users, DollarSign, Zap, TrendingUp, UserPlus, Instagram, Bot, Star, Trophy, Rocket, ExternalLink, Check, Gift, LogIn } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ReferralForm from "@/components/referral/ReferralForm";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -89,6 +89,18 @@ const LandingPage = () => {
     careerPath: "Reserved for proven editors → Profit sharing possible → Partnership potential for exceptional talent"
   }];
   return <div className="min-h-screen bg-background overflow-hidden">
+      {/* Top Navigation with Login Button */}
+      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-end p-4 md:p-6">
+        <Button 
+          variant="outline" 
+          onClick={() => navigate("/login")}
+          className="gap-2 bg-background/80 backdrop-blur-sm border-border hover:bg-accent"
+        >
+          <LogIn className="w-4 h-4" />
+          Team Login
+        </Button>
+      </nav>
+
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-6">
         {/* Background Grid */}
