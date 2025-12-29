@@ -1,18 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { FileText, ExternalLink, Link2, Plus, Trash2, Edit2, Save, X } from "lucide-react";
+import { FileText, ExternalLink, Link2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { toast } from "sonner";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 
 interface SharedFile {
   id: string;
@@ -24,28 +13,17 @@ interface SharedFile {
   created_at: string;
 }
 
-interface FilesPageProps {
-  isAdmin?: boolean;
-}
-
-export default function FilesPage({ isAdmin = false }: FilesPageProps) {
+export default function FilesPage() {
   const [links, setLinks] = useState<SharedFile[]>([]);
-  const [script, setScript] = useState<SharedFile | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [editingLink, setEditingLink] = useState<SharedFile | null>(null);
-  const [formData, setFormData] = useState({ title: "", description: "", url: "" });
-  
-  // Script editing
-  const [editingScript, setEditingScript] = useState(false);
   const [scriptContent, setScriptContent] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
-    const { data, error } = await supabase
+    const { data } = await supabase
       .from("shared_files")
       .select("*")
       .order("created_at", { ascending: false });
@@ -53,106 +31,10 @@ export default function FilesPage({ isAdmin = false }: FilesPageProps) {
     if (data) {
       const scriptItem = data.find(f => f.file_type === "script");
       const linkItems = data.filter(f => f.file_type === "link");
-      setScript(scriptItem || null);
       setScriptContent(scriptItem?.content || "");
       setLinks(linkItems);
     }
     setLoading(false);
-  };
-
-  // Script handlers
-  const handleSaveScript = async () => {
-    if (script) {
-      const { error } = await supabase
-        .from("shared_files")
-        .update({ content: scriptContent })
-        .eq("id", script.id);
-
-      if (error) {
-        toast.error("Failed to save");
-        return;
-      }
-    } else {
-      const { error } = await supabase.from("shared_files").insert({
-        title: "Current Script",
-        url: "#",
-        content: scriptContent,
-        file_type: "script",
-      });
-
-      if (error) {
-        toast.error("Failed to save");
-        return;
-      }
-    }
-    toast.success("Script saved");
-    setEditingScript(false);
-    fetchData();
-  };
-
-  // Link handlers
-  const handleSubmitLink = async () => {
-    if (!formData.title || !formData.url) {
-      toast.error("Title and URL are required");
-      return;
-    }
-
-    if (editingLink) {
-      const { error } = await supabase
-        .from("shared_files")
-        .update({
-          title: formData.title,
-          description: formData.description || null,
-          url: formData.url,
-        })
-        .eq("id", editingLink.id);
-
-      if (error) {
-        toast.error("Failed to update");
-        return;
-      }
-      toast.success("Link updated");
-    } else {
-      const { error } = await supabase.from("shared_files").insert({
-        title: formData.title,
-        description: formData.description || null,
-        url: formData.url,
-        file_type: "link",
-      });
-
-      if (error) {
-        toast.error("Failed to add");
-        return;
-      }
-      toast.success("Link added");
-    }
-
-    setFormData({ title: "", description: "", url: "" });
-    setEditingLink(null);
-    setDialogOpen(false);
-    fetchData();
-  };
-
-  const handleDeleteLink = async (id: string) => {
-    const { error } = await supabase.from("shared_files").delete().eq("id", id);
-    if (error) {
-      toast.error("Failed to delete");
-      return;
-    }
-    toast.success("Link deleted");
-    fetchData();
-  };
-
-  const openEditLink = (file: SharedFile) => {
-    setEditingLink(file);
-    setFormData({ title: file.title, description: file.description || "", url: file.url });
-    setDialogOpen(true);
-  };
-
-  const openNewLink = () => {
-    setEditingLink(null);
-    setFormData({ title: "", description: "", url: "" });
-    setDialogOpen(true);
   };
 
   if (loading) {
@@ -192,62 +74,19 @@ export default function FilesPage({ isAdmin = false }: FilesPageProps) {
               <h2 className="text-lg font-semibold text-[hsl(0,0%,95%)]">
                 📝 Current Script
               </h2>
-              {isAdmin && !editingScript && (
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() => setEditingScript(true)}
-                  className="text-[hsl(0,0%,55%)] hover:text-[hsl(0,0%,95%)]"
-                >
-                  <Edit2 className="w-4 h-4 mr-1" />
-                  Edit
-                </Button>
-              )}
-              {isAdmin && editingScript && (
-                <div className="flex gap-2">
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    onClick={() => {
-                      setEditingScript(false);
-                      setScriptContent(script?.content || "");
-                    }}
-                    className="text-[hsl(0,0%,55%)] hover:text-[hsl(0,0%,95%)]"
-                  >
-                    <X className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    size="sm"
-                    onClick={handleSaveScript}
-                    className="bg-[hsl(var(--workflow-purple))] hover:bg-[hsl(var(--workflow-purple)/0.8)]"
-                  >
-                    <Save className="w-4 h-4 mr-1" />
-                    Save
-                  </Button>
-                </div>
-              )}
             </div>
 
-            {editingScript ? (
-              <Textarea
-                value={scriptContent}
-                onChange={(e) => setScriptContent(e.target.value)}
-                placeholder="Paste the English script that editors should test..."
-                className="min-h-[400px] bg-[hsl(0,0%,10%)] border-[hsl(0,0%,18%)] text-[hsl(0,0%,90%)] font-mono text-sm"
-              />
-            ) : (
-              <div className="min-h-[400px] bg-[hsl(0,0%,5%)] rounded-lg p-4 overflow-auto">
-                {scriptContent ? (
-                  <pre className="whitespace-pre-wrap text-[hsl(0,0%,80%)] font-mono text-sm leading-relaxed">
-                    {scriptContent}
-                  </pre>
-                ) : (
-                  <p className="text-[hsl(0,0%,45%)] italic">
-                    No script added yet
-                  </p>
-                )}
-              </div>
-            )}
+            <div className="min-h-[400px] bg-[hsl(0,0%,5%)] rounded-lg p-4 overflow-auto">
+              {scriptContent ? (
+                <pre className="whitespace-pre-wrap text-[hsl(0,0%,80%)] font-mono text-sm leading-relaxed">
+                  {scriptContent}
+                </pre>
+              ) : (
+                <p className="text-[hsl(0,0%,45%)] italic">
+                  No script added yet
+                </p>
+              )}
+            </div>
           </div>
 
           {/* Design Links Section */}
@@ -256,62 +95,6 @@ export default function FilesPage({ isAdmin = false }: FilesPageProps) {
               <h2 className="text-lg font-semibold text-[hsl(0,0%,95%)]">
                 🎨 Design Links
               </h2>
-              {isAdmin && (
-                <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-                  <DialogTrigger asChild>
-                    <Button
-                      size="sm"
-                      onClick={openNewLink}
-                      className="bg-[hsl(var(--workflow-purple))] hover:bg-[hsl(var(--workflow-purple)/0.8)]"
-                    >
-                      <Plus className="w-4 h-4 mr-1" />
-                      Add Link
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="bg-[hsl(0,0%,8%)] border-[hsl(0,0%,15%)]">
-                    <DialogHeader>
-                      <DialogTitle className="text-[hsl(0,0%,95%)]">
-                        {editingLink ? "Edit Link" : "Add New Link"}
-                      </DialogTitle>
-                    </DialogHeader>
-                    <div className="space-y-4 mt-4">
-                      <div>
-                        <label className="text-sm text-[hsl(0,0%,65%)] mb-1 block">Title</label>
-                        <Input
-                          value={formData.title}
-                          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                          placeholder="e.g. Canva Design #1"
-                          className="bg-[hsl(0,0%,12%)] border-[hsl(0,0%,18%)] text-[hsl(0,0%,95%)]"
-                        />
-                      </div>
-                      <div>
-                        <label className="text-sm text-[hsl(0,0%,65%)] mb-1 block">Description (optional)</label>
-                        <Textarea
-                          value={formData.description}
-                          onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                          placeholder="Brief description..."
-                          className="bg-[hsl(0,0%,12%)] border-[hsl(0,0%,18%)] text-[hsl(0,0%,95%)]"
-                        />
-                      </div>
-                      <div>
-                        <label className="text-sm text-[hsl(0,0%,65%)] mb-1 block">URL</label>
-                        <Input
-                          value={formData.url}
-                          onChange={(e) => setFormData({ ...formData, url: e.target.value })}
-                          placeholder="https://canva.com/..."
-                          className="bg-[hsl(0,0%,12%)] border-[hsl(0,0%,18%)] text-[hsl(0,0%,95%)]"
-                        />
-                      </div>
-                      <Button
-                        onClick={handleSubmitLink}
-                        className="w-full bg-[hsl(var(--workflow-purple))] hover:bg-[hsl(var(--workflow-purple)/0.8)]"
-                      >
-                        {editingLink ? "Save" : "Add"}
-                      </Button>
-                    </div>
-                  </DialogContent>
-                </Dialog>
-              )}
             </div>
 
             <div className="space-y-3 min-h-[400px]">
@@ -349,23 +132,6 @@ export default function FilesPage({ isAdmin = false }: FilesPageProps) {
                         </a>
                       </div>
                     </div>
-
-                    {isAdmin && (
-                      <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <button
-                          onClick={() => openEditLink(link)}
-                          className="p-1.5 rounded-lg hover:bg-[hsl(0,0%,12%)] text-[hsl(0,0%,55%)] hover:text-[hsl(0,0%,80%)] transition-colors"
-                        >
-                          <Edit2 className="w-4 h-4" />
-                        </button>
-                        <button
-                          onClick={() => handleDeleteLink(link.id)}
-                          className="p-1.5 rounded-lg hover:bg-[hsl(0,0%,12%)] text-[hsl(0,0%,55%)] hover:text-red-400 transition-colors"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
-                      </div>
-                    )}
                   </motion.div>
                 ))
               )}
