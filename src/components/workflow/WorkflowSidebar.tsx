@@ -74,7 +74,7 @@ export default function WorkflowSidebar({ userName, onLogout, userId }: Workflow
             <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--workflow-purple))] to-[hsl(var(--workflow-violet))] rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">S</span>
             </div>
-            <span className="font-display font-bold text-[hsl(0,0%,88%)] text-sm">Academy</span>
+            <span className="font-display font-bold text-[hsl(0,0%,88%)] text-sm">Workflow</span>
           </motion.div>
         )}
         <button
@@ -148,7 +148,7 @@ export default function WorkflowSidebar({ userName, onLogout, userId }: Workflow
           {!collapsed && (
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-[hsl(0,0%,88%)] truncate">{userName}</p>
-              <p className="text-xs text-[hsl(0,0%,45%)]">Student</p>
+              <p className="text-xs text-[hsl(0,0%,45%)]">Team</p>
             </div>
           )}
           <button

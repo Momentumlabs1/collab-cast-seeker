@@ -100,10 +100,10 @@ export default function AcademyDashboard() {
         className="mb-8"
       >
         <h1 className="text-3xl font-display font-bold text-[hsl(0,0%,95%)] mb-2">
-          Welcome back, {session?.name}!
+          Hey {session?.name}!
         </h1>
         <p className="text-[hsl(0,0%,55%)]">
-          Learn how to create stunning animated educational videos with StrichAbi
+          So machen wir die StrichAbi Videos
         </p>
       </motion.div>
 
@@ -116,9 +116,9 @@ export default function AcademyDashboard() {
       >
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-lg font-semibold text-[hsl(0,0%,90%)]">Your Progress</h2>
+            <h2 className="text-lg font-semibold text-[hsl(0,0%,90%)]">Fortschritt</h2>
             <p className="text-sm text-[hsl(0,0%,55%)]">
-              {completedCount} of {totalPhases} phases completed
+              {completedCount} von {totalPhases} Phasen abgeschlossen
             </p>
           </div>
           <div className="text-3xl font-bold text-[hsl(var(--workflow-purple))]">
@@ -175,14 +175,6 @@ export default function AcademyDashboard() {
                       <span className="text-xs font-medium text-[hsl(0,0%,45%)]">
                         Phase {phase.order_index}
                       </span>
-                      {phase.difficulty && (
-                        <span className={cn(
-                          "text-xs px-2 py-0.5 rounded-full capitalize",
-                          getDifficultyColor(phase.difficulty)
-                        )}>
-                          {phase.difficulty}
-                        </span>
-                      )}
                     </div>
                     <h3 className="font-semibold text-[hsl(0,0%,90%)] mb-1 group-hover:text-[hsl(var(--workflow-purple))] transition-colors">
                       {phase.title}
@@ -191,12 +183,6 @@ export default function AcademyDashboard() {
                       <p className="text-sm text-[hsl(0,0%,50%)] line-clamp-2">
                         {phase.subtitle}
                       </p>
-                    )}
-                    {phase.estimated_time && (
-                      <div className="flex items-center gap-1 mt-2 text-xs text-[hsl(0,0%,45%)]">
-                        <Clock className="w-3 h-3" />
-                        <span>{phase.estimated_time}</span>
-                      </div>
                     )}
                   </div>
                 </div>
