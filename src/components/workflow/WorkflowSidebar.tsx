@@ -92,7 +92,7 @@ export default function WorkflowSidebar({ userName, onLogout, userId }: Workflow
           to="/workflow"
           end
           className={({ isActive }) => cn(
-            "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 mb-2",
+            "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 mb-1",
             isActive
               ? "bg-gradient-to-r from-[hsl(var(--workflow-purple)/0.2)] to-[hsl(var(--workflow-violet)/0.2)] text-[hsl(0,0%,95%)] border border-[hsl(var(--workflow-purple)/0.3)]"
               : "text-[hsl(0,0%,55%)] hover:text-[hsl(0,0%,80%)] hover:bg-[hsl(0,0%,8%)]",
@@ -103,11 +103,26 @@ export default function WorkflowSidebar({ userName, onLogout, userId }: Workflow
           {!collapsed && <span className="text-sm font-medium">Dashboard</span>}
         </NavLink>
 
+        {/* Designs & Files Link */}
+        <NavLink
+          to="/workflow/files"
+          className={({ isActive }) => cn(
+            "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 mb-2",
+            isActive
+              ? "bg-gradient-to-r from-[hsl(var(--workflow-purple)/0.2)] to-[hsl(var(--workflow-violet)/0.2)] text-[hsl(0,0%,95%)] border border-[hsl(var(--workflow-purple)/0.3)]"
+              : "text-[hsl(0,0%,55%)] hover:text-[hsl(0,0%,80%)] hover:bg-[hsl(0,0%,8%)]",
+            collapsed && "justify-center px-2"
+          )}
+        >
+          <FileText className="w-5 h-5 shrink-0" />
+          {!collapsed && <span className="text-sm font-medium">Designs & Files</span>}
+        </NavLink>
+
         <div className="h-px bg-[hsl(0,0%,13%)] my-2" />
 
-        {/* Phases */}
+        {/* Phases - filter out "Designs & Files" since it has its own link */}
         <div className="space-y-1">
-          {phases.map((phase) => {
+          {phases.filter(p => p.order_index > 1).map((phase) => {
             const isActive = location.pathname === `/workflow/phase/${phase.id}`;
             const Icon = iconMap[phase.icon || "BookOpen"] || BookOpen;
             const isCompleted = completedPhases.has(phase.id);

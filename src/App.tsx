@@ -12,6 +12,7 @@ import TeamLogin from "./pages/TeamLogin";
 import WorkflowLayout from "./components/workflow/WorkflowLayout";
 import AcademyDashboard from "./pages/workflow/AcademyDashboard";
 import PhaseViewer from "./pages/workflow/PhaseViewer";
+import FilesPage from "./pages/workflow/FilesPage";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/login" element={<TeamLogin />} />
           <Route path="/workflow" element={<WorkflowLayout />}>
             <Route index element={<AcademyDashboard />} />
+            <Route path="files" element={<FilesPage isAdmin />} />
             <Route path="phase/:phaseId" element={<PhaseViewer />} />
           </Route>
           <Route path="*" element={<NotFound />} />
