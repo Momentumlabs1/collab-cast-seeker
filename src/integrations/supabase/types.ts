@@ -220,6 +220,7 @@ export type Database = {
       }
       shared_files: {
         Row: {
+          content: string | null
           created_at: string
           description: string | null
           file_type: string
@@ -229,6 +230,7 @@ export type Database = {
           url: string
         }
         Insert: {
+          content?: string | null
           created_at?: string
           description?: string | null
           file_type?: string
@@ -238,6 +240,7 @@ export type Database = {
           url: string
         }
         Update: {
+          content?: string | null
           created_at?: string
           description?: string | null
           file_type?: string
