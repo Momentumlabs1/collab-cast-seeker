@@ -235,12 +235,6 @@ export default function PhaseViewer() {
                   <span className="text-xs font-medium text-[hsl(var(--workflow-purple))]">
                     Phase {phase.order_index}
                   </span>
-                  {phase.estimated_time && (
-                    <span className="flex items-center gap-1 text-xs text-[hsl(0,0%,45%)]">
-                      <Clock className="w-3 h-3" />
-                      {phase.estimated_time}
-                    </span>
-                  )}
                 </div>
                 <h1 className="text-xl font-display font-bold text-[hsl(0,0%,95%)]">
                   {phase.title}
@@ -291,8 +285,7 @@ export default function PhaseViewer() {
           {/* Content Sections */}
           {sections.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-[hsl(0,0%,50%)]">No content available yet.</p>
-              <p className="text-sm text-[hsl(0,0%,40%)] mt-1">Check back later!</p>
+              <p className="text-[hsl(0,0%,50%)]">Content wird noch hinzugefügt.</p>
             </div>
           ) : (
             <div className="space-y-8">
@@ -340,7 +333,7 @@ export default function PhaseViewer() {
             className="mt-8 p-6 rounded-xl bg-[hsl(0,0%,6%)] border border-[hsl(0,0%,13%)]"
           >
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-semibold text-[hsl(0,0%,90%)]">Personal Notes</h3>
+              <h3 className="font-semibold text-[hsl(0,0%,90%)]">Eigene Notizen</h3>
               <Button
                 onClick={saveNotes}
                 variant="ghost"
@@ -355,7 +348,7 @@ export default function PhaseViewer() {
             <Textarea
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              placeholder="Take notes as you learn..."
+              placeholder="Notizen hier eintragen..."
               className="min-h-[120px] bg-[hsl(0,0%,8%)] border-[hsl(0,0%,15%)] text-[hsl(0,0%,85%)] placeholder:text-[hsl(0,0%,40%)] focus:border-[hsl(var(--workflow-purple))]"
             />
           </motion.div>
