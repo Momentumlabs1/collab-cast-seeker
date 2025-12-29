@@ -56,32 +56,40 @@ export default function DesignsFilesTab() {
   };
 
   const handleSaveScript = async () => {
-    if (script) {
-      const { error } = await supabase
-        .from("shared_files")
-        .update({ content: scriptContent })
-        .eq("id", script.id);
+    try {
+      if (script) {
+        const { error } = await supabase
+          .from("shared_files")
+          .update({ content: scriptContent })
+          .eq("id", script.id);
 
-      if (error) {
-        toast.error("Failed to save");
-        return;
-      }
-    } else {
-      const { error } = await supabase.from("shared_files").insert({
-        title: "Current Script",
-        url: "#",
-        content: scriptContent,
-        file_type: "script",
-      });
+        if (error) {
+          console.error("Update error:", error);
+          toast.error("Failed to save: " + error.message);
+          return;
+        }
+      } else {
+        const { data, error } = await supabase.from("shared_files").insert({
+          title: "Current Script",
+          url: "#",
+          content: scriptContent,
+          file_type: "script",
+        }).select();
 
-      if (error) {
-        toast.error("Failed to save");
-        return;
+        if (error) {
+          console.error("Insert error:", error);
+          toast.error("Failed to save: " + error.message);
+          return;
+        }
+        console.log("Script created:", data);
       }
+      toast.success("Script saved");
+      setEditingScript(false);
+      await fetchData();
+    } catch (err) {
+      console.error("Unexpected error:", err);
+      toast.error("An unexpected error occurred");
     }
-    toast.success("Script saved");
-    setEditingScript(false);
-    fetchData();
   };
 
   const handleSubmitLink = async () => {
