@@ -68,6 +68,211 @@ export type Database = {
         }
         Relationships: []
       }
+      canva_designs: {
+        Row: {
+          canva_url: string | null
+          created_at: string
+          design_number: number
+          export_status: string
+          export_zip_url: string | null
+          id: string
+          max_slides: number
+          project_id: string
+          slide_count: number
+          updated_at: string
+        }
+        Insert: {
+          canva_url?: string | null
+          created_at?: string
+          design_number: number
+          export_status?: string
+          export_zip_url?: string | null
+          id?: string
+          max_slides?: number
+          project_id: string
+          slide_count?: number
+          updated_at?: string
+        }
+        Update: {
+          canva_url?: string | null
+          created_at?: string
+          design_number?: number
+          export_status?: string
+          export_zip_url?: string | null
+          id?: string
+          max_slides?: number
+          project_id?: string
+          slide_count?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "canva_designs_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      export_settings: {
+        Row: {
+          created_at: string
+          element_type: string | null
+          export_as_separate_page: boolean
+          id: string
+          notes: string | null
+          page_name: string | null
+          scene_id: string
+        }
+        Insert: {
+          created_at?: string
+          element_type?: string | null
+          export_as_separate_page?: boolean
+          id?: string
+          notes?: string | null
+          page_name?: string | null
+          scene_id: string
+        }
+        Update: {
+          created_at?: string
+          element_type?: string | null
+          export_as_separate_page?: boolean
+          id?: string
+          notes?: string | null
+          page_name?: string | null
+          scene_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "export_settings_scene_id_fkey"
+            columns: ["scene_id"]
+            isOneToOne: false
+            referencedRelation: "scenes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      frame_plans: {
+        Row: {
+          created_at: string
+          end_frame_description: string | null
+          end_frame_image_url: string | null
+          id: string
+          scene_id: string
+          start_frame_description: string | null
+          start_frame_image_url: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          end_frame_description?: string | null
+          end_frame_image_url?: string | null
+          id?: string
+          scene_id: string
+          start_frame_description?: string | null
+          start_frame_image_url?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          end_frame_description?: string | null
+          end_frame_image_url?: string | null
+          id?: string
+          scene_id?: string
+          start_frame_description?: string | null
+          start_frame_image_url?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "frame_plans_scene_id_fkey"
+            columns: ["scene_id"]
+            isOneToOne: false
+            referencedRelation: "scenes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      frame_steps: {
+        Row: {
+          created_at: string
+          description: string
+          estimated_slides: number | null
+          frame_plan_id: string
+          id: string
+          step_number: number
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          estimated_slides?: number | null
+          frame_plan_id: string
+          id?: string
+          step_number: number
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          estimated_slides?: number | null
+          frame_plan_id?: string
+          id?: string
+          step_number?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "frame_steps_frame_plan_id_fkey"
+            columns: ["frame_plan_id"]
+            isOneToOne: false
+            referencedRelation: "frame_plans"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      projects: {
+        Row: {
+          created_at: string
+          description: string | null
+          duration_seconds: number | null
+          id: string
+          status: Database["public"]["Enums"]["project_status"]
+          team_member_id: string
+          title: string
+          total_slides: number | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          duration_seconds?: number | null
+          id?: string
+          status?: Database["public"]["Enums"]["project_status"]
+          team_member_id: string
+          title: string
+          total_slides?: number | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          duration_seconds?: number | null
+          id?: string
+          status?: Database["public"]["Enums"]["project_status"]
+          team_member_id?: string
+          title?: string
+          total_slides?: number | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "projects_team_member_id_fkey"
+            columns: ["team_member_id"]
+            isOneToOne: false
+            referencedRelation: "team_members"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       referrals: {
         Row: {
           created_at: string
@@ -104,6 +309,193 @@ export type Database = {
         }
         Relationships: []
       }
+      scenes: {
+        Row: {
+          canva_design_id: string | null
+          created_at: string
+          duration_seconds: number | null
+          end_frame: number | null
+          id: string
+          order_index: number
+          positioning: Database["public"]["Enums"]["positioning_type"]
+          project_id: string
+          script_text: string | null
+          start_frame: number | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          canva_design_id?: string | null
+          created_at?: string
+          duration_seconds?: number | null
+          end_frame?: number | null
+          id?: string
+          order_index: number
+          positioning?: Database["public"]["Enums"]["positioning_type"]
+          project_id: string
+          script_text?: string | null
+          start_frame?: number | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          canva_design_id?: string | null
+          created_at?: string
+          duration_seconds?: number | null
+          end_frame?: number | null
+          id?: string
+          order_index?: number
+          positioning?: Database["public"]["Enums"]["positioning_type"]
+          project_id?: string
+          script_text?: string | null
+          start_frame?: number | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "scenes_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      script_words: {
+        Row: {
+          animation_notes: string | null
+          animation_type: string | null
+          created_at: string
+          end_slide: number | null
+          has_animation: boolean
+          id: string
+          order_index: number
+          scene_id: string
+          start_slide: number | null
+          word_text: string
+        }
+        Insert: {
+          animation_notes?: string | null
+          animation_type?: string | null
+          created_at?: string
+          end_slide?: number | null
+          has_animation?: boolean
+          id?: string
+          order_index: number
+          scene_id: string
+          start_slide?: number | null
+          word_text: string
+        }
+        Update: {
+          animation_notes?: string | null
+          animation_type?: string | null
+          created_at?: string
+          end_slide?: number | null
+          has_animation?: boolean
+          id?: string
+          order_index?: number
+          scene_id?: string
+          start_slide?: number | null
+          word_text?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "script_words_scene_id_fkey"
+            columns: ["scene_id"]
+            isOneToOne: false
+            referencedRelation: "scenes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      team_members: {
+        Row: {
+          access_code: string
+          created_at: string
+          id: string
+          is_active: boolean
+          last_login_at: string | null
+          name: string
+          notes: string | null
+          updated_at: string
+        }
+        Insert: {
+          access_code: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          last_login_at?: string | null
+          name: string
+          notes?: string | null
+          updated_at?: string
+        }
+        Update: {
+          access_code?: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          last_login_at?: string | null
+          name?: string
+          notes?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      workflow_assets: {
+        Row: {
+          created_at: string
+          file_path: string | null
+          file_url: string | null
+          id: string
+          is_animated: boolean
+          metadata: Json | null
+          name: string
+          project_id: string
+          scene_id: string | null
+          type: string
+        }
+        Insert: {
+          created_at?: string
+          file_path?: string | null
+          file_url?: string | null
+          id?: string
+          is_animated?: boolean
+          metadata?: Json | null
+          name: string
+          project_id: string
+          scene_id?: string | null
+          type: string
+        }
+        Update: {
+          created_at?: string
+          file_path?: string | null
+          file_url?: string | null
+          id?: string
+          is_animated?: boolean
+          metadata?: Json | null
+          name?: string
+          project_id?: string
+          scene_id?: string | null
+          type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workflow_assets_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "workflow_assets_scene_id_fkey"
+            columns: ["scene_id"]
+            isOneToOne: false
+            referencedRelation: "scenes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -112,7 +504,9 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      approval_status: "pending" | "approved" | "rejected"
+      positioning_type: "side_by_side" | "closeup" | "no_characters"
+      project_status: "draft" | "in_progress" | "review" | "completed"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -239,6 +633,10 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      approval_status: ["pending", "approved", "rejected"],
+      positioning_type: ["side_by_side", "closeup", "no_characters"],
+      project_status: ["draft", "in_progress", "review", "completed"],
+    },
   },
 } as const
