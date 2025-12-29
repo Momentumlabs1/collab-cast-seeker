@@ -19,7 +19,7 @@ export default function WorkflowLayout() {
 
   return (
     <div className="min-h-screen bg-[hsl(0,0%,4%)] flex">
-      <WorkflowSidebar userName={session.name} onLogout={logout} />
+      <WorkflowSidebar userName={session.name} onLogout={logout} userId={session.id} />
       <main className="flex-1 overflow-auto">
         <Outlet />
       </main>

@@ -68,207 +68,116 @@ export type Database = {
         }
         Relationships: []
       }
-      canva_designs: {
+      content_sections: {
         Row: {
-          canva_url: string | null
-          created_at: string
-          design_number: number
-          export_status: string
-          export_zip_url: string | null
+          content_type: string
+          created_at: string | null
           id: string
-          max_slides: number
-          project_id: string
-          slide_count: number
-          updated_at: string
-        }
-        Insert: {
-          canva_url?: string | null
-          created_at?: string
-          design_number: number
-          export_status?: string
-          export_zip_url?: string | null
-          id?: string
-          max_slides?: number
-          project_id: string
-          slide_count?: number
-          updated_at?: string
-        }
-        Update: {
-          canva_url?: string | null
-          created_at?: string
-          design_number?: number
-          export_status?: string
-          export_zip_url?: string | null
-          id?: string
-          max_slides?: number
-          project_id?: string
-          slide_count?: number
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "canva_designs_project_id_fkey"
-            columns: ["project_id"]
-            isOneToOne: false
-            referencedRelation: "projects"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      export_settings: {
-        Row: {
-          created_at: string
-          element_type: string | null
-          export_as_separate_page: boolean
-          id: string
-          notes: string | null
-          page_name: string | null
-          scene_id: string
-        }
-        Insert: {
-          created_at?: string
-          element_type?: string | null
-          export_as_separate_page?: boolean
-          id?: string
-          notes?: string | null
-          page_name?: string | null
-          scene_id: string
-        }
-        Update: {
-          created_at?: string
-          element_type?: string | null
-          export_as_separate_page?: boolean
-          id?: string
-          notes?: string | null
-          page_name?: string | null
-          scene_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "export_settings_scene_id_fkey"
-            columns: ["scene_id"]
-            isOneToOne: false
-            referencedRelation: "scenes"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      frame_plans: {
-        Row: {
-          created_at: string
-          end_frame_description: string | null
-          end_frame_image_url: string | null
-          id: string
-          scene_id: string
-          start_frame_description: string | null
-          start_frame_image_url: string | null
-          updated_at: string
-        }
-        Insert: {
-          created_at?: string
-          end_frame_description?: string | null
-          end_frame_image_url?: string | null
-          id?: string
-          scene_id: string
-          start_frame_description?: string | null
-          start_frame_image_url?: string | null
-          updated_at?: string
-        }
-        Update: {
-          created_at?: string
-          end_frame_description?: string | null
-          end_frame_image_url?: string | null
-          id?: string
-          scene_id?: string
-          start_frame_description?: string | null
-          start_frame_image_url?: string | null
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "frame_plans_scene_id_fkey"
-            columns: ["scene_id"]
-            isOneToOne: false
-            referencedRelation: "scenes"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      frame_steps: {
-        Row: {
-          created_at: string
-          description: string
-          estimated_slides: number | null
-          frame_plan_id: string
-          id: string
-          step_number: number
-        }
-        Insert: {
-          created_at?: string
-          description: string
-          estimated_slides?: number | null
-          frame_plan_id: string
-          id?: string
-          step_number: number
-        }
-        Update: {
-          created_at?: string
-          description?: string
-          estimated_slides?: number | null
-          frame_plan_id?: string
-          id?: string
-          step_number?: number
-        }
-        Relationships: [
-          {
-            foreignKeyName: "frame_steps_frame_plan_id_fkey"
-            columns: ["frame_plan_id"]
-            isOneToOne: false
-            referencedRelation: "frame_plans"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      projects: {
-        Row: {
-          created_at: string
-          description: string | null
-          duration_seconds: number | null
-          id: string
-          status: Database["public"]["Enums"]["project_status"]
-          team_member_id: string
+          order_index: number
+          phase_id: string
           title: string
-          total_slides: number | null
-          updated_at: string
         }
         Insert: {
-          created_at?: string
-          description?: string | null
-          duration_seconds?: number | null
+          content_type: string
+          created_at?: string | null
           id?: string
-          status?: Database["public"]["Enums"]["project_status"]
-          team_member_id: string
+          order_index: number
+          phase_id: string
           title: string
-          total_slides?: number | null
-          updated_at?: string
         }
         Update: {
-          created_at?: string
-          description?: string | null
-          duration_seconds?: number | null
+          content_type?: string
+          created_at?: string | null
           id?: string
-          status?: Database["public"]["Enums"]["project_status"]
-          team_member_id?: string
+          order_index?: number
+          phase_id?: string
           title?: string
-          total_slides?: number | null
-          updated_at?: string
         }
         Relationships: [
           {
-            foreignKeyName: "projects_team_member_id_fkey"
-            columns: ["team_member_id"]
+            foreignKeyName: "content_sections_phase_id_fkey"
+            columns: ["phase_id"]
             isOneToOne: false
-            referencedRelation: "team_members"
+            referencedRelation: "workflow_phases"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      downloadable_resources: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          file_size_mb: number | null
+          file_type: string | null
+          file_url: string
+          id: string
+          section_id: string
+          title: string
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          file_size_mb?: number | null
+          file_type?: string | null
+          file_url: string
+          id?: string
+          section_id: string
+          title: string
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          file_size_mb?: number | null
+          file_type?: string | null
+          file_url?: string
+          id?: string
+          section_id?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "downloadable_resources_section_id_fkey"
+            columns: ["section_id"]
+            isOneToOne: false
+            referencedRelation: "content_sections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      image_content: {
+        Row: {
+          caption: string | null
+          created_at: string | null
+          description: string | null
+          id: string
+          image_url: string
+          section_id: string
+          title: string | null
+        }
+        Insert: {
+          caption?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          image_url: string
+          section_id: string
+          title?: string | null
+        }
+        Update: {
+          caption?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          image_url?: string
+          section_id?: string
+          title?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "image_content_section_id_fkey"
+            columns: ["section_id"]
+            isOneToOne: false
+            referencedRelation: "content_sections"
             referencedColumns: ["id"]
           },
         ]
@@ -309,106 +218,6 @@ export type Database = {
         }
         Relationships: []
       }
-      scenes: {
-        Row: {
-          canva_design_id: string | null
-          created_at: string
-          duration_seconds: number | null
-          end_frame: number | null
-          id: string
-          order_index: number
-          positioning: Database["public"]["Enums"]["positioning_type"]
-          project_id: string
-          script_text: string | null
-          start_frame: number | null
-          title: string
-          updated_at: string
-        }
-        Insert: {
-          canva_design_id?: string | null
-          created_at?: string
-          duration_seconds?: number | null
-          end_frame?: number | null
-          id?: string
-          order_index: number
-          positioning?: Database["public"]["Enums"]["positioning_type"]
-          project_id: string
-          script_text?: string | null
-          start_frame?: number | null
-          title: string
-          updated_at?: string
-        }
-        Update: {
-          canva_design_id?: string | null
-          created_at?: string
-          duration_seconds?: number | null
-          end_frame?: number | null
-          id?: string
-          order_index?: number
-          positioning?: Database["public"]["Enums"]["positioning_type"]
-          project_id?: string
-          script_text?: string | null
-          start_frame?: number | null
-          title?: string
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "scenes_project_id_fkey"
-            columns: ["project_id"]
-            isOneToOne: false
-            referencedRelation: "projects"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      script_words: {
-        Row: {
-          animation_notes: string | null
-          animation_type: string | null
-          created_at: string
-          end_slide: number | null
-          has_animation: boolean
-          id: string
-          order_index: number
-          scene_id: string
-          start_slide: number | null
-          word_text: string
-        }
-        Insert: {
-          animation_notes?: string | null
-          animation_type?: string | null
-          created_at?: string
-          end_slide?: number | null
-          has_animation?: boolean
-          id?: string
-          order_index: number
-          scene_id: string
-          start_slide?: number | null
-          word_text: string
-        }
-        Update: {
-          animation_notes?: string | null
-          animation_type?: string | null
-          created_at?: string
-          end_slide?: number | null
-          has_animation?: boolean
-          id?: string
-          order_index?: number
-          scene_id?: string
-          start_slide?: number | null
-          word_text?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "script_words_scene_id_fkey"
-            columns: ["scene_id"]
-            isOneToOne: false
-            referencedRelation: "scenes"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       team_members: {
         Row: {
           access_code: string
@@ -442,59 +251,162 @@ export type Database = {
         }
         Relationships: []
       }
-      workflow_assets: {
+      text_content: {
         Row: {
-          created_at: string
-          file_path: string | null
-          file_url: string | null
+          content: string
+          created_at: string | null
           id: string
-          is_animated: boolean
-          metadata: Json | null
-          name: string
-          project_id: string
-          scene_id: string | null
-          type: string
+          section_id: string
         }
         Insert: {
-          created_at?: string
-          file_path?: string | null
-          file_url?: string | null
+          content: string
+          created_at?: string | null
           id?: string
-          is_animated?: boolean
-          metadata?: Json | null
-          name: string
-          project_id: string
-          scene_id?: string | null
-          type: string
+          section_id: string
         }
         Update: {
-          created_at?: string
-          file_path?: string | null
-          file_url?: string | null
+          content?: string
+          created_at?: string | null
           id?: string
-          is_animated?: boolean
-          metadata?: Json | null
-          name?: string
-          project_id?: string
-          scene_id?: string | null
-          type?: string
+          section_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "workflow_assets_project_id_fkey"
-            columns: ["project_id"]
+            foreignKeyName: "text_content_section_id_fkey"
+            columns: ["section_id"]
             isOneToOne: false
-            referencedRelation: "projects"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "workflow_assets_scene_id_fkey"
-            columns: ["scene_id"]
-            isOneToOne: false
-            referencedRelation: "scenes"
+            referencedRelation: "content_sections"
             referencedColumns: ["id"]
           },
         ]
+      }
+      user_progress: {
+        Row: {
+          completed: boolean | null
+          completed_at: string | null
+          created_at: string | null
+          id: string
+          notes: string | null
+          phase_id: string
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          completed?: boolean | null
+          completed_at?: string | null
+          created_at?: string | null
+          id?: string
+          notes?: string | null
+          phase_id: string
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          completed?: boolean | null
+          completed_at?: string | null
+          created_at?: string | null
+          id?: string
+          notes?: string | null
+          phase_id?: string
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_progress_phase_id_fkey"
+            columns: ["phase_id"]
+            isOneToOne: false
+            referencedRelation: "workflow_phases"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_progress_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "team_members"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      video_content: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          duration_seconds: number | null
+          id: string
+          section_id: string
+          thumbnail_url: string | null
+          title: string
+          video_url: string
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          duration_seconds?: number | null
+          id?: string
+          section_id: string
+          thumbnail_url?: string | null
+          title: string
+          video_url: string
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          duration_seconds?: number | null
+          id?: string
+          section_id?: string
+          thumbnail_url?: string | null
+          title?: string
+          video_url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "video_content_section_id_fkey"
+            columns: ["section_id"]
+            isOneToOne: false
+            referencedRelation: "content_sections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workflow_phases: {
+        Row: {
+          created_at: string | null
+          difficulty: string | null
+          estimated_time: string | null
+          icon: string | null
+          id: string
+          is_published: boolean | null
+          order_index: number
+          subtitle: string | null
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          difficulty?: string | null
+          estimated_time?: string | null
+          icon?: string | null
+          id?: string
+          is_published?: boolean | null
+          order_index: number
+          subtitle?: string | null
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          difficulty?: string | null
+          estimated_time?: string | null
+          icon?: string | null
+          id?: string
+          is_published?: boolean | null
+          order_index?: number
+          subtitle?: string | null
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
       }
     }
     Views: {
