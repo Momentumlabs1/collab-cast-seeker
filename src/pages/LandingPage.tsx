@@ -24,16 +24,16 @@ const LandingPage = () => {
   const [referralOpen, setReferralOpen] = useState(false);
   const features = [{
     icon: DollarSign,
-    title: "$500-$1,500/month",
-    description: "Depending on account level. Real compensation for real talent."
+    title: "$500-$1,000/month",
+    description: "Base pay depending on account. Real compensation for real talent."
   }, {
     icon: TrendingUp,
-    title: "Profit Sharing",
-    description: "Earn a share of channel revenue and other projects. Grow with us."
+    title: "Profit Sharing Possible",
+    description: "Top performers can unlock profit sharing. Prove yourself first."
   }, {
     icon: UserPlus,
-    title: "Build Your Team",
-    description: "Great work? Lead your own team. We have big plans ahead."
+    title: "Team Building Opportunity",
+    description: "Exceptional work? Chance to build and lead your own team."
   }, {
     icon: Sparkles,
     title: "Free Training",
@@ -43,36 +43,36 @@ const LandingPage = () => {
     name: "AGENT_STICK",
     handle: "@agent.stickk",
     link: "https://www.instagram.com/agent.stickk",
-    description: "English version of Strichabi. Your starting point!",
-    tag: "Start Here",
-    pay: "$1,000/month",
+    description: "Career path to Strichabi. Get trained and move up!",
+    tag: "Career Path",
+    pay: "$500-$1,000/month",
     platforms: ["Instagram", "TikTok"],
     highlight: true,
-    fullDescription: "This is where you start your journey. Agent Stick is the English version of our main German account Strichabi. You will learn our animation style by translating existing Strichabi videos to English. All scripts are provided by us – you just need to bring your animation skills.",
-    requirements: ["Translate older Strichabi videos to English", "Learn our unique animation style", "Scripts provided – focus on animation quality", "Existing content to learn from"],
-    careerPath: "Start here → Prove yourself → Move to Strichabi ($1,500/month) → Become a partner"
+    fullDescription: "Start at Agent Stick (English version of Strichabi), get trained, and top performers move up to the flagship Strichabi account. You'll learn our animation style by translating existing content. Scripts provided – focus on animation quality.",
+    requirements: ["Translate older Strichabi videos to English", "Learn our unique animation style", "Scripts provided – focus on animation quality", "Clear path to bigger opportunities"],
+    careerPath: "Agent Stick → Top performers move to Strichabi → Profit sharing & partnership possible"
   }, {
     name: "ATOMIC BUCK",
     handle: "@atomic_buck_",
     link: "https://www.instagram.com/atomic_buck_",
-    description: "Rebranding to new character style. Heavy animation work.",
-    tag: "Rebrand",
-    pay: "$1,000/month",
+    description: "Build a new character with me. Scripts ready, process needs refining.",
+    tag: "Character Build",
+    pay: "$500-$1,000/month",
     platforms: ["Instagram"],
     highlight: false,
-    fullDescription: "This account is going through a complete rebrand. We are transforming it into a new character style similar to @yeti_dyor on TikTok. This requires heavy animation work and creative input. Perfect for editors who want to shape something new from the ground up.",
+    fullDescription: "Build a new character together with me. Scripts are ready, but the process needs refining. Heavy animation work required. Perfect for editors who want to shape something new and be part of the creative process.",
     requirements: ["Create new character animations", "Heavy animation workload", "Creative input welcome", "Reference style: @yeti_dyor on TikTok"],
-    careerPath: "Build the new style → Show consistent quality → Profit sharing opportunities"
+    careerPath: "Build the character → Show consistent quality → Profit sharing possible for top performers"
   }, {
     name: "POVYOURAI",
     handle: "@povyourai",
     link: "https://www.instagram.com/povyourai",
-    description: "Currently dormant – open for fresh ideas.",
-    tag: "Entry Level",
+    description: "Inactive account – bring your own ideas and bring it back to life!",
+    tag: "Creative Project",
     pay: "$500/month",
     platforms: ["Instagram"],
     highlight: false,
-    fullDescription: "This account is currently dormant and waiting for the right person to bring it back to life. We are completely open for fresh ideas and new directions. Simpler videos are okay here – the main goal is to get some views and test new concepts. Perfect entry point for beginners.",
+    fullDescription: "This account is currently inactive and waiting for the right person to bring it back to life. We are completely open for fresh ideas and new directions. Simpler videos are okay – perfect for beginners or creative experimenters.",
     requirements: ["Bring your own creative ideas", "Simpler videos accepted", "Low pressure environment", "Freedom to experiment"],
     careerPath: "Start simple → Build views → Prove yourself → Move to bigger accounts"
   }, {
@@ -81,12 +81,12 @@ const LandingPage = () => {
     link: "https://www.instagram.com/strichabi",
     description: "Our flagship German account. Top performers only.",
     tag: "Elite Level",
-    pay: "$1,500/month",
+    pay: "Up to $1,000/month + Extras",
     platforms: ["Instagram", "TikTok"],
     highlight: false,
-    fullDescription: "This is our main German account and the source of most of our revenue. We produce this content ourselves. Only top performers who have proven themselves on Agent Stick or other accounts get to work here. This is the goal you are working towards.",
+    fullDescription: "This is our main German account and the source of most of our revenue. Only top performers who have proven themselves (usually via Agent Stick) get to work here. This is the goal you're working towards.",
     requirements: ["Must prove yourself first on Agent Stick", "Match my quality level with my scripts", "Highest animation standards", "Long-term commitment"],
-    careerPath: "Reserved for proven editors → $1,500/month → Profit sharing → Partnership potential"
+    careerPath: "Reserved for proven editors → Profit sharing possible → Partnership potential for exceptional talent"
   }];
   return <div className="min-h-screen bg-background overflow-hidden">
       {/* Hero Section */}
@@ -172,8 +172,8 @@ const LandingPage = () => {
           delay: 0.2
         }} className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto mb-10">
             Join our team of talented video editors. 
-            Get paid <span className="text-foreground font-semibold">$500-$1,500/month</span> plus 
-            profit sharing. Build your own team with great work.
+            Get paid <span className="text-foreground font-semibold">$500-$1,000/month</span>. 
+            Top performers unlock profit sharing or the chance to build their own team.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -213,8 +213,8 @@ const LandingPage = () => {
             </div>
             <div className="w-px h-8 bg-border" />
             <div className="text-center">
-              <p className="font-display text-xl sm:text-2xl font-bold">$1.5k</p>
-              <p className="text-muted-foreground">Max Pay</p>
+              <p className="font-display text-xl sm:text-2xl font-bold">$1k</p>
+              <p className="text-muted-foreground">Base Pay</p>
             </div>
           </motion.div>
         </div>
@@ -235,10 +235,10 @@ const LandingPage = () => {
         }} className="text-center mb-16">
             
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4">
-              The Accounts You'll Work On
+              Choose Your Path
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Start with Agent Stick, prove yourself, grow to Strichabi.
+              Three paths, three opportunities. Pick the one that fits you best.
             </p>
           </motion.div>
 
@@ -432,7 +432,7 @@ const LandingPage = () => {
             <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-border -translate-x-1/2 hidden md:block" />
 
             <div className="space-y-8">
-              {[{
+            {[{
               icon: Rocket,
               title: "Apply & Get Selected",
               desc: "Submit your portfolio. We pick a few promising candidates for the training phase.",
@@ -445,13 +445,13 @@ const LandingPage = () => {
             }, {
               icon: Star,
               title: "Get the Job",
-              desc: "Winner gets: All programs & access you need. Fixed starting income. Long-term work.",
-              pay: "$1,000/month"
+              desc: "Winner gets: All programs & access you need. Fixed income. Long-term work.",
+              pay: "$500-$1,000/month"
             }, {
               icon: Users,
-              title: "Grow With Us",
-              desc: "Work on bigger accounts, earn more, get profit sharing, build your own team.",
-              pay: "Up to $1,500+ / Partner"
+              title: "Top Performer Rewards",
+              desc: "Exceptional results? Unlock profit sharing or the chance to build your own team.",
+              pay: "Bonus Opportunities"
             }].map((item, index) => <motion.div key={item.title} initial={{
               opacity: 0,
               x: index % 2 === 0 ? -30 : 30
@@ -557,7 +557,7 @@ const LandingPage = () => {
           }, {
             step: "04",
             title: "Get Paid",
-            desc: "$500-$1,500/month once your first video goes live"
+            desc: "$500-$1,000/month once your first video goes live"
           }].map((item, index) => <motion.div key={item.step} initial={{
             opacity: 0,
             x: index % 2 === 0 ? -30 : 30
