@@ -285,7 +285,7 @@ export default function PhaseViewer() {
           {/* Content Sections */}
           {sections.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-[hsl(0,0%,50%)]">Content wird noch hinzugefügt.</p>
+              <p className="text-[hsl(0,0%,50%)]">Content coming soon.</p>
             </div>
           ) : (
             <div className="space-y-8">
@@ -333,7 +333,7 @@ export default function PhaseViewer() {
             className="mt-8 p-6 rounded-xl bg-[hsl(0,0%,6%)] border border-[hsl(0,0%,13%)]"
           >
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-semibold text-[hsl(0,0%,90%)]">Eigene Notizen</h3>
+              <h3 className="font-semibold text-[hsl(0,0%,90%)]">Personal Notes</h3>
               <Button
                 onClick={saveNotes}
                 variant="ghost"
@@ -348,7 +348,7 @@ export default function PhaseViewer() {
             <Textarea
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              placeholder="Notizen hier eintragen..."
+              placeholder="Add your notes here..."
               className="min-h-[120px] bg-[hsl(0,0%,8%)] border-[hsl(0,0%,15%)] text-[hsl(0,0%,85%)] placeholder:text-[hsl(0,0%,40%)] focus:border-[hsl(var(--workflow-purple))]"
             />
           </motion.div>

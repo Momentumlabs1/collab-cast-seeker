@@ -69,23 +69,23 @@ export default function FilesPage({ isAdmin = false }: FilesPageProps) {
         .eq("id", script.id);
 
       if (error) {
-        toast.error("Fehler beim Speichern");
+        toast.error("Failed to save");
         return;
       }
     } else {
       const { error } = await supabase.from("shared_files").insert({
-        title: "Aktuelles Skript",
+        title: "Current Script",
         url: "#",
         content: scriptContent,
         file_type: "script",
       });
 
       if (error) {
-        toast.error("Fehler beim Speichern");
+        toast.error("Failed to save");
         return;
       }
     }
-    toast.success("Skript gespeichert");
+    toast.success("Script saved");
     setEditingScript(false);
     fetchData();
   };
@@ -93,7 +93,7 @@ export default function FilesPage({ isAdmin = false }: FilesPageProps) {
   // Link handlers
   const handleSubmitLink = async () => {
     if (!formData.title || !formData.url) {
-      toast.error("Titel und URL sind erforderlich");
+      toast.error("Title and URL are required");
       return;
     }
 
@@ -108,10 +108,10 @@ export default function FilesPage({ isAdmin = false }: FilesPageProps) {
         .eq("id", editingLink.id);
 
       if (error) {
-        toast.error("Fehler beim Aktualisieren");
+        toast.error("Failed to update");
         return;
       }
-      toast.success("Link aktualisiert");
+      toast.success("Link updated");
     } else {
       const { error } = await supabase.from("shared_files").insert({
         title: formData.title,
@@ -121,10 +121,10 @@ export default function FilesPage({ isAdmin = false }: FilesPageProps) {
       });
 
       if (error) {
-        toast.error("Fehler beim Hinzufügen");
+        toast.error("Failed to add");
         return;
       }
-      toast.success("Link hinzugefügt");
+      toast.success("Link added");
     }
 
     setFormData({ title: "", description: "", url: "" });
@@ -136,10 +136,10 @@ export default function FilesPage({ isAdmin = false }: FilesPageProps) {
   const handleDeleteLink = async (id: string) => {
     const { error } = await supabase.from("shared_files").delete().eq("id", id);
     if (error) {
-      toast.error("Fehler beim Löschen");
+      toast.error("Failed to delete");
       return;
     }
-    toast.success("Link gelöscht");
+    toast.success("Link deleted");
     fetchData();
   };
 
@@ -180,7 +180,7 @@ export default function FilesPage({ isAdmin = false }: FilesPageProps) {
               Designs & Files
             </h1>
             <p className="text-[hsl(0,0%,55%)]">
-              Aktuelles Skript und Canva Design Links
+              Current script and Canva design links
             </p>
           </div>
         </div>
@@ -190,7 +190,7 @@ export default function FilesPage({ isAdmin = false }: FilesPageProps) {
           <div className="bg-[hsl(0,0%,7%)] border border-[hsl(0,0%,13%)] rounded-xl p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-[hsl(0,0%,95%)]">
-                📝 Aktuelles Skript
+                📝 Current Script
               </h2>
               {isAdmin && !editingScript && (
                 <Button
@@ -200,7 +200,7 @@ export default function FilesPage({ isAdmin = false }: FilesPageProps) {
                   className="text-[hsl(0,0%,55%)] hover:text-[hsl(0,0%,95%)]"
                 >
                   <Edit2 className="w-4 h-4 mr-1" />
-                  Bearbeiten
+                  Edit
                 </Button>
               )}
               {isAdmin && editingScript && (
@@ -222,7 +222,7 @@ export default function FilesPage({ isAdmin = false }: FilesPageProps) {
                     className="bg-[hsl(var(--workflow-purple))] hover:bg-[hsl(var(--workflow-purple)/0.8)]"
                   >
                     <Save className="w-4 h-4 mr-1" />
-                    Speichern
+                    Save
                   </Button>
                 </div>
               )}
@@ -232,7 +232,7 @@ export default function FilesPage({ isAdmin = false }: FilesPageProps) {
               <Textarea
                 value={scriptContent}
                 onChange={(e) => setScriptContent(e.target.value)}
-                placeholder="Füge hier das englische Skript ein, das die Editoren testen sollen..."
+                placeholder="Paste the English script that editors should test..."
                 className="min-h-[400px] bg-[hsl(0,0%,10%)] border-[hsl(0,0%,18%)] text-[hsl(0,0%,90%)] font-mono text-sm"
               />
             ) : (
@@ -243,7 +243,7 @@ export default function FilesPage({ isAdmin = false }: FilesPageProps) {
                   </pre>
                 ) : (
                   <p className="text-[hsl(0,0%,45%)] italic">
-                    Noch kein Skript hinzugefügt
+                    No script added yet
                   </p>
                 )}
               </div>
@@ -265,31 +265,31 @@ export default function FilesPage({ isAdmin = false }: FilesPageProps) {
                       className="bg-[hsl(var(--workflow-purple))] hover:bg-[hsl(var(--workflow-purple)/0.8)]"
                     >
                       <Plus className="w-4 h-4 mr-1" />
-                      Link
+                      Add Link
                     </Button>
                   </DialogTrigger>
                   <DialogContent className="bg-[hsl(0,0%,8%)] border-[hsl(0,0%,15%)]">
                     <DialogHeader>
                       <DialogTitle className="text-[hsl(0,0%,95%)]">
-                        {editingLink ? "Link bearbeiten" : "Neuen Link hinzufügen"}
+                        {editingLink ? "Edit Link" : "Add New Link"}
                       </DialogTitle>
                     </DialogHeader>
                     <div className="space-y-4 mt-4">
                       <div>
-                        <label className="text-sm text-[hsl(0,0%,65%)] mb-1 block">Titel</label>
+                        <label className="text-sm text-[hsl(0,0%,65%)] mb-1 block">Title</label>
                         <Input
                           value={formData.title}
                           onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                          placeholder="z.B. Canva Design #1"
+                          placeholder="e.g. Canva Design #1"
                           className="bg-[hsl(0,0%,12%)] border-[hsl(0,0%,18%)] text-[hsl(0,0%,95%)]"
                         />
                       </div>
                       <div>
-                        <label className="text-sm text-[hsl(0,0%,65%)] mb-1 block">Beschreibung (optional)</label>
+                        <label className="text-sm text-[hsl(0,0%,65%)] mb-1 block">Description (optional)</label>
                         <Textarea
                           value={formData.description}
                           onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                          placeholder="Kurze Beschreibung..."
+                          placeholder="Brief description..."
                           className="bg-[hsl(0,0%,12%)] border-[hsl(0,0%,18%)] text-[hsl(0,0%,95%)]"
                         />
                       </div>
@@ -306,7 +306,7 @@ export default function FilesPage({ isAdmin = false }: FilesPageProps) {
                         onClick={handleSubmitLink}
                         className="w-full bg-[hsl(var(--workflow-purple))] hover:bg-[hsl(var(--workflow-purple)/0.8)]"
                       >
-                        {editingLink ? "Speichern" : "Hinzufügen"}
+                        {editingLink ? "Save" : "Add"}
                       </Button>
                     </div>
                   </DialogContent>
@@ -318,7 +318,7 @@ export default function FilesPage({ isAdmin = false }: FilesPageProps) {
               {links.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-[380px] text-[hsl(0,0%,45%)]">
                   <Link2 className="w-10 h-10 mb-3 opacity-50" />
-                  <p>Noch keine Links hinzugefügt</p>
+                  <p>No links added yet</p>
                 </div>
               ) : (
                 links.map((link, index) => (
@@ -344,7 +344,7 @@ export default function FilesPage({ isAdmin = false }: FilesPageProps) {
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1 text-sm text-[hsl(var(--workflow-purple))] hover:text-[hsl(var(--workflow-violet))] transition-colors mt-1"
                         >
-                          Öffnen
+                          Open
                           <ExternalLink className="w-3 h-3" />
                         </a>
                       </div>
