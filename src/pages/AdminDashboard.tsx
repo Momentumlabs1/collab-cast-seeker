@@ -90,8 +90,8 @@ export default function AdminDashboard() {
 
     if (error) {
       toast({
-        title: "Fehler",
-        description: "Bewerbungen konnten nicht geladen werden.",
+        title: "Error",
+        description: "Could not load applications.",
         variant: "destructive",
       });
     } else {
@@ -108,8 +108,8 @@ export default function AdminDashboard() {
 
     if (error) {
       toast({
-        title: "Fehler",
-        description: "Status konnte nicht geändert werden.",
+        title: "Error",
+        description: "Could not update status.",
         variant: "destructive",
       });
     } else {
@@ -120,8 +120,8 @@ export default function AdminDashboard() {
         setSelectedApplication((prev) => prev ? { ...prev, status: newStatus } : null);
       }
       toast({
-        title: "Status aktualisiert",
-        description: `Bewerbung wurde auf "${newStatus}" gesetzt.`,
+        title: "Status Updated",
+        description: `Application has been set to "${newStatus}".`,
       });
     }
   };
@@ -152,11 +152,11 @@ export default function AdminDashboard() {
             </Link>
             <div>
               <h1 className="text-3xl font-bold text-foreground">Admin Dashboard</h1>
-              <p className="text-muted-foreground">Bewerbungen & Empfehlungen verwalten</p>
+              <p className="text-muted-foreground">Manage applications & referrals</p>
             </div>
           </div>
           <Button onClick={fetchApplications} variant="outline">
-            Aktualisieren
+            Refresh
           </Button>
         </div>
 
@@ -191,7 +191,7 @@ export default function AdminDashboard() {
                   </div>
                   <div>
                     <p className="text-2xl font-bold text-foreground">{stats.total}</p>
-                    <p className="text-sm text-muted-foreground">Gesamt</p>
+                    <p className="text-sm text-muted-foreground">Total</p>
                   </div>
                 </div>
               </motion.div>
@@ -256,7 +256,7 @@ export default function AdminDashboard() {
                   <SelectValue placeholder="Account" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">Alle Accounts</SelectItem>
+                  <SelectItem value="all">All Accounts</SelectItem>
                   <SelectItem value="AGENT_STICK">AGENT_STICK</SelectItem>
                   <SelectItem value="ATOMIC_BUCK">ATOMIC BUCK</SelectItem>
                   <SelectItem value="POVYOURAI">POVYOURAI</SelectItem>
@@ -268,7 +268,7 @@ export default function AdminDashboard() {
                   <SelectValue placeholder="Status" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">Alle Status</SelectItem>
+                  <SelectItem value="all">All Statuses</SelectItem>
                   <SelectItem value="pending">Pending</SelectItem>
                   <SelectItem value="accepted">Accepted</SelectItem>
                   <SelectItem value="rejected">Rejected</SelectItem>
@@ -285,11 +285,11 @@ export default function AdminDashboard() {
             >
               {loading ? (
                 <div className="p-12 text-center text-muted-foreground">
-                  Lädt Bewerbungen...
+                  Loading applications...
                 </div>
               ) : filteredApplications.length === 0 ? (
                 <div className="p-12 text-center text-muted-foreground">
-                  Keine Bewerbungen gefunden.
+                  No applications found.
                 </div>
               ) : (
                 <Table>
@@ -298,12 +298,12 @@ export default function AdminDashboard() {
                       <TableHead>Name</TableHead>
                       <TableHead>Account</TableHead>
                       <TableHead>Location</TableHead>
-                      <TableHead>Kontakt</TableHead>
+                      <TableHead>Contact</TableHead>
                       <TableHead>Tools</TableHead>
                       <TableHead>Files</TableHead>
-                      <TableHead>Datum</TableHead>
+                      <TableHead>Date</TableHead>
                       <TableHead>Status</TableHead>
-                      <TableHead className="text-right">Aktionen</TableHead>
+                      <TableHead className="text-right">Actions</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -380,7 +380,7 @@ export default function AdminDashboard() {
                             )}
                           </TableCell>
                           <TableCell className="text-sm text-muted-foreground">
-                            {new Date(app.created_at).toLocaleDateString("de-DE")}
+                            {new Date(app.created_at).toLocaleDateString("en-US")}
                           </TableCell>
                           <TableCell>
                             <Badge className={`${statusColor} border`}>
