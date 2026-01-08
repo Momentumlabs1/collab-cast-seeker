@@ -81,7 +81,7 @@ const LandingPage = () => {
     link: "https://www.instagram.com/strichabi",
     description: "Our flagship German account. Top performers only.",
     tag: "Elite Level",
-    pay: "Up to $1,000/month + Extras",
+    pay: "$1,000-$2,000/month",
     platforms: ["Instagram", "TikTok"],
     highlight: false,
     fullDescription: "This is our main German account and the source of most of our revenue. Only top performers who have proven themselves (usually via Agent Stick) get to work here. This is the goal you're working towards.",
@@ -184,7 +184,7 @@ const LandingPage = () => {
           delay: 0.2
         }} className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto mb-10">
             Join our team of talented video editors. 
-            Get paid <span className="text-foreground font-semibold">$500-$1,000/month</span>. 
+            Get paid <span className="text-foreground font-semibold">$500-$2,000/month</span>. 
             Top performers unlock profit sharing or the chance to build their own team.
           </motion.p>
 
